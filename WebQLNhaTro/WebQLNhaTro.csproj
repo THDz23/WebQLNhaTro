@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -52,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,9 +162,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KhuVucController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -176,8 +179,50 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ADMIN.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnhTro.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChuTro.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanhMucTro.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KHACHHANG.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KhuVuc.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NhaTro.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaTroModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaTroModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaTroModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaTroModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimTheoGia.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinTuc.cs">
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2118,6 +2163,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\NhaTroModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\NhaTroModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\clientss\lib\bootstrap\css\bootstrap.min.css.map" />
@@ -2216,6 +2271,15 @@
     <Content Include="Content\clients\plugins\summernote\summernote.js.map" />
     <Content Include="Content\clients\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\clients\plugins\toastr\toastr.js.map" />
+    <EntityDeploy Include="Models\NhaTroModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NhaTroModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NhaTroModel.edmx.diagram">
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\KhuVuc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\KhuVuc\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2278,6 +2342,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
