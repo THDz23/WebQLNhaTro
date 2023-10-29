@@ -14,9 +14,9 @@ namespace WebQLNhaTro.Models
     
     public partial class ADMIN
     {
-        public int MaAD { get; set; }
-        public string TaiKhoan { get; set; }
-        public string MatKhau { get; set; }
-        public Nullable<int> Quyen { get; set; }
+        public int IDAdmin { get; set; }
+        public string Account { get; set; }
+        public string password { get; set; }
+        public Nullable<int> permission { get; set; }
     }
 }

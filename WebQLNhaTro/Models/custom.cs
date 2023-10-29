@@ -12,13 +12,13 @@ namespace WebQLNhaTro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KHACHHANG
+    public partial class custom
     {
-        public int MAKH { get; set; }
-        public string HoTen { get; set; }
-        public string TaiKhoan { get; set; }
-        public string MatKhau { get; set; }
-        public string GioiTinh { get; set; }
+        public int CustomID { get; set; }
+        public string fullName { get; set; }
+        public string Account { get; set; }
+        public string PassWord { get; set; }
+        public string gender { get; set; }
         public string Email { get; set; }
     }
 }

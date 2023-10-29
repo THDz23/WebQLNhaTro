@@ -7,186 +7,186 @@
       <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMIN">
           <Key>
-            <PropertyRef Name="MaAD" />
+            <PropertyRef Name="IDAdmin" />
           </Key>
-          <Property Name="MaAD" Type="int" Nullable="false" />
-          <Property Name="TaiKhoan" Type="nvarchar(max)" />
-          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
-          <Property Name="Quyen" Type="int" />
+          <Property Name="IDAdmin" Type="int" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="permission" Type="int" />
         </EntityType>
-        <EntityType Name="AnhTro">
+        <EntityType Name="area">
           <Key>
-            <PropertyRef Name="MaAnh" />
+            <PropertyRef Name="AreaID" />
           </Key>
-          <Property Name="MaAnh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Anh" Type="varchar" MaxLength="50" />
-          <Property Name="MaTro" Type="int" Nullable="false" />
+          <Property Name="AreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="ChuTro">
+        <EntityType Name="CategoryMotel">
           <Key>
-            <PropertyRef Name="MaChuTro" />
+            <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="MaChuTro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenChuTro" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DienThoai" Type="nchar" MaxLength="10" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TaiKhoan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="DanhMucTro">
+        <EntityType Name="custom">
           <Key>
-            <PropertyRef Name="MaDanhMuc" />
+            <PropertyRef Name="CustomID" />
           </Key>
-          <Property Name="MaDanhMuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TheLoai" Type="nvarchar(max)" />
-          <Property Name="MoTa" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="KHACHHANG">
-          <Key>
-            <PropertyRef Name="MAKH" />
-          </Key>
-          <Property Name="MAKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TaiKhoan" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="MatKhau" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="GioiTinh" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CustomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="KhuVuc">
+        <EntityType Name="Host">
           <Key>
-            <PropertyRef Name="MaKhuVuc" />
+            <PropertyRef Name="HostID" />
           </Key>
-          <Property Name="MaKhuVuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenKhuVuc" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NgayDang" Type="datetime" Nullable="false" />
-          <Property Name="NgaySua" Type="datetime" Nullable="false" />
+          <Property Name="HostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="NhaTro">
+        <EntityType Name="ImageMotel">
           <Key>
-            <PropertyRef Name="MaTro" />
+            <PropertyRef Name="ImageId" />
           </Key>
-          <Property Name="MaTro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IDTimGia" Type="int" Nullable="false" />
-          <Property Name="DienTich" Type="int" Nullable="false" />
-          <Property Name="DiaChi" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NgayDang" Type="datetime" Nullable="false" />
-          <Property Name="NgayHetHan" Type="datetime" Nullable="false" />
-          <Property Name="TrangThai" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MaKhuVuc" Type="int" Nullable="false" />
-          <Property Name="MaDanhMuc" Type="int" Nullable="false" />
-          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ChiTiet" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Anh" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MaChuTro" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="HostID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="TimTheoGia">
+        <EntityType Name="motel">
           <Key>
-            <PropertyRef Name="IDTimGia" />
+            <PropertyRef Name="MotelID" />
           </Key>
-          <Property Name="IDTimGia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GiaTu" Type="nvarchar(max)" />
-          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="MotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Acreage" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiledDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HostID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="TinTuc">
+        <EntityType Name="News">
           <Key>
-            <PropertyRef Name="MaTinTuc" />
+            <PropertyRef Name="NewID" />
           </Key>
-          <Property Name="MaTinTuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ChiTiet" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="AnhDaiDien" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="NgayDang" Type="datetime" Nullable="false" />
-          <Property Name="NgaySua" Type="datetime" Nullable="false" />
+          <Property Name="NewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="avatar" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="searchprice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceFrom" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_AnhTro_NhaTro">
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="1" />
-          <End Role="AnhTro" Type="Self.AnhTro" Multiplicity="*" />
+          <End Role="motel" Type="Self.motel" Multiplicity="1" />
+          <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NhaTro">
-              <PropertyRef Name="MaTro" />
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
             </Principal>
-            <Dependent Role="AnhTro">
-              <PropertyRef Name="MaTro" />
+            <Dependent Role="ImageMotel">
+              <PropertyRef Name="HostID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_DanhMucTro_FKMADM">
-          <End Role="DanhMucTro" Type="Self.DanhMucTro" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="CategoryMotel" Type="Self.CategoryMotel" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DanhMucTro">
-              <PropertyRef Name="MaDanhMuc" />
+            <Principal Role="CategoryMotel">
+              <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaDanhMuc" />
+            <Dependent Role="motel">
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
-          <End Role="KhuVuc" Type="Self.KhuVuc" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="KhuVuc">
-              <PropertyRef Name="MaKhuVuc" />
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaKhuVuc" />
+            <Dependent Role="motel">
+              <PropertyRef Name="AreaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_NhaTro_FKTTChuTRo">
-          <End Role="ChuTro" Type="Self.ChuTro" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="Host" Type="Self.Host" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ChuTro">
-              <PropertyRef Name="MaChuTro" />
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaChuTro" />
+            <Dependent Role="motel">
+              <PropertyRef Name="HostID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_TimTheoGia_FKTimGia">
-          <End Role="TimTheoGia" Type="Self.TimTheoGia" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="searchprice" Type="Self.searchprice" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TimTheoGia">
-              <PropertyRef Name="IDTimGia" />
+            <Principal Role="searchprice">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="IDTimGia" />
+            <Dependent Role="motel">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NhaTroModelStoreContainer">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AnhTro" EntityType="Self.AnhTro" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChuTro" EntityType="Self.ChuTro" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DanhMucTro" EntityType="Self.DanhMucTro" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KhuVuc" EntityType="Self.KhuVuc" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NhaTro" EntityType="Self.NhaTro" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TimTheoGia" EntityType="Self.TimTheoGia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryMotel" EntityType="Self.CategoryMotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="custom" EntityType="Self.custom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Host" EntityType="Self.Host" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageMotel" EntityType="Self.ImageMotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="motel" EntityType="Self.motel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="searchprice" EntityType="Self.searchprice" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AnhTro_NhaTro" Association="Self.FK_AnhTro_NhaTro">
-            <End Role="NhaTro" EntitySet="NhaTro" />
-            <End Role="AnhTro" EntitySet="AnhTro" />
+            <End Role="motel" EntitySet="motel" />
+            <End Role="ImageMotel" EntitySet="ImageMotel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_DanhMucTro_FKMADM" Association="Self.FK_NhaTro_DanhMucTro_FKMADM">
-            <End Role="DanhMucTro" EntitySet="DanhMucTro" />
-            <End Role="NhaTro" EntitySet="NhaTro" />
+            <End Role="CategoryMotel" EntitySet="CategoryMotel" />
+            <End Role="motel" EntitySet="motel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
-            <End Role="KhuVuc" EntitySet="KhuVuc" />
-            <End Role="NhaTro" EntitySet="NhaTro" />
+            <End Role="area" EntitySet="area" />
+            <End Role="motel" EntitySet="motel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_NhaTro_FKTTChuTRo" Association="Self.FK_NhaTro_NhaTro_FKTTChuTRo">
-            <End Role="ChuTro" EntitySet="ChuTro" />
-            <End Role="NhaTro" EntitySet="NhaTro" />
+            <End Role="Host" EntitySet="Host" />
+            <End Role="motel" EntitySet="motel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_TimTheoGia_FKTimGia" Association="Self.FK_NhaTro_TimTheoGia_FKTimGia">
-            <End Role="TimTheoGia" EntitySet="TimTheoGia" />
-            <End Role="NhaTro" EntitySet="NhaTro" />
+            <End Role="searchprice" EntitySet="searchprice" />
+            <End Role="motel" EntitySet="motel" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -196,196 +196,196 @@
       <Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ADMIN">
           <Key>
-            <PropertyRef Name="MaAD" />
+            <PropertyRef Name="IDAdmin" />
           </Key>
-          <Property Name="MaAD" Type="Int32" Nullable="false" />
-          <Property Name="TaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Quyen" Type="Int32" />
+          <Property Name="IDAdmin" Type="Int32" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="permission" Type="Int32" />
         </EntityType>
-        <EntityType Name="AnhTro">
+        <EntityType Name="area">
           <Key>
-            <PropertyRef Name="MaAnh" />
+            <PropertyRef Name="AreaID" />
           </Key>
-          <Property Name="MaAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaTro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NhaTro" Relationship="Self.FK_AnhTro_NhaTro" FromRole="AnhTro" ToRole="NhaTro" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="area" ToRole="motel" />
         </EntityType>
-        <EntityType Name="ChuTro">
+        <EntityType Name="CategoryMotel">
           <Key>
-            <PropertyRef Name="MaChuTro" />
+            <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="MaChuTro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenChuTro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NhaTroes" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="ChuTro" ToRole="NhaTro" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="CategoryMotel" ToRole="motel" />
         </EntityType>
-        <EntityType Name="DanhMucTro">
+        <EntityType Name="custom">
           <Key>
-            <PropertyRef Name="MaDanhMuc" />
+            <PropertyRef Name="CustomID" />
           </Key>
-          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TheLoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhaTroes" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="DanhMucTro" ToRole="NhaTro" />
-        </EntityType>
-        <EntityType Name="KHACHHANG">
-          <Key>
-            <PropertyRef Name="MAKH" />
-          </Key>
-          <Property Name="MAKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CustomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="KhuVuc">
+        <EntityType Name="Host">
           <Key>
-            <PropertyRef Name="MaKhuVuc" />
+            <PropertyRef Name="HostID" />
           </Key>
-          <Property Name="MaKhuVuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenKhuVuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgaySua" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="NhaTroes" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="KhuVuc" ToRole="NhaTro" />
+          <Property Name="HostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="Host" ToRole="motel" />
         </EntityType>
-        <EntityType Name="NhaTro">
+        <EntityType Name="ImageMotel">
           <Key>
-            <PropertyRef Name="MaTro" />
+            <PropertyRef Name="ImageId" />
           </Key>
-          <Property Name="MaTro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IDTimGia" Type="Int32" Nullable="false" />
-          <Property Name="DienTich" Type="Int32" Nullable="false" />
-          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayHetHan" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MaKhuVuc" Type="Int32" Nullable="false" />
-          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MaChuTro" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AnhTroes" Relationship="Self.FK_AnhTro_NhaTro" FromRole="NhaTro" ToRole="AnhTro" />
-          <NavigationProperty Name="ChuTro" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="NhaTro" ToRole="ChuTro" />
-          <NavigationProperty Name="DanhMucTro" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="NhaTro" ToRole="DanhMucTro" />
-          <NavigationProperty Name="KhuVuc" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="NhaTro" ToRole="KhuVuc" />
-          <NavigationProperty Name="TimTheoGia" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="NhaTro" ToRole="TimTheoGia" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HostID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="motel" Relationship="Self.FK_AnhTro_NhaTro" FromRole="ImageMotel" ToRole="motel" />
         </EntityType>
-        <EntityType Name="TimTheoGia">
+        <EntityType Name="motel">
           <Key>
-            <PropertyRef Name="IDTimGia" />
+            <PropertyRef Name="MotelID" />
           </Key>
-          <Property Name="IDTimGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GiaTu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="NhaTroes" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="TimTheoGia" ToRole="NhaTro" />
+          <Property Name="MotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Acreage" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiledDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HostID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="motel" ToRole="area" />
+          <NavigationProperty Name="CategoryMotel" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="motel" ToRole="CategoryMotel" />
+          <NavigationProperty Name="Host" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="motel" ToRole="Host" />
+          <NavigationProperty Name="ImageMotels" Relationship="Self.FK_AnhTro_NhaTro" FromRole="motel" ToRole="ImageMotel" />
+          <NavigationProperty Name="searchprice" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="motel" ToRole="searchprice" />
         </EntityType>
-        <EntityType Name="TinTuc">
+        <EntityType Name="News">
           <Key>
-            <PropertyRef Name="MaTinTuc" />
+            <PropertyRef Name="NewID" />
           </Key>
-          <Property Name="MaTinTuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AnhDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgaySua" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <Association Name="FK_AnhTro_NhaTro">
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="1" />
-          <End Role="AnhTro" Type="Self.AnhTro" Multiplicity="*" />
+        <EntityType Name="searchprice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="searchprice" ToRole="motel" />
+        </EntityType>
+        <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="NhaTro">
-              <PropertyRef Name="MaTro" />
+            <Principal Role="area">
+              <PropertyRef Name="AreaID" />
             </Principal>
-            <Dependent Role="AnhTro">
-              <PropertyRef Name="MaTro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NhaTro_NhaTro_FKTTChuTRo">
-          <End Role="ChuTro" Type="Self.ChuTro" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChuTro">
-              <PropertyRef Name="MaChuTro" />
-            </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaChuTro" />
+            <Dependent Role="motel">
+              <PropertyRef Name="AreaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_DanhMucTro_FKMADM">
-          <End Role="DanhMucTro" Type="Self.DanhMucTro" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="CategoryMotel" Type="Self.CategoryMotel" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DanhMucTro">
-              <PropertyRef Name="MaDanhMuc" />
+            <Principal Role="CategoryMotel">
+              <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaDanhMuc" />
+            <Dependent Role="motel">
+              <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
-          <End Role="KhuVuc" Type="Self.KhuVuc" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+        <Association Name="FK_NhaTro_NhaTro_FKTTChuTRo">
+          <End Role="Host" Type="Self.Host" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="KhuVuc">
-              <PropertyRef Name="MaKhuVuc" />
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="MaKhuVuc" />
+            <Dependent Role="motel">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnhTro_NhaTro">
+          <End Role="motel" Type="Self.motel" Multiplicity="1" />
+          <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="ImageMotel">
+              <PropertyRef Name="HostID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_NhaTro_TimTheoGia_FKTimGia">
-          <End Role="TimTheoGia" Type="Self.TimTheoGia" Multiplicity="1" />
-          <End Role="NhaTro" Type="Self.NhaTro" Multiplicity="*" />
+          <End Role="searchprice" Type="Self.searchprice" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TimTheoGia">
-              <PropertyRef Name="IDTimGia" />
+            <Principal Role="searchprice">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="NhaTro">
-              <PropertyRef Name="IDTimGia" />
+            <Dependent Role="motel">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
-          <EntitySet Name="AnhTroes" EntityType="Self.AnhTro" />
-          <EntitySet Name="ChuTroes" EntityType="Self.ChuTro" />
-          <EntitySet Name="DanhMucTroes" EntityType="Self.DanhMucTro" />
-          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
-          <EntitySet Name="KhuVucs" EntityType="Self.KhuVuc" />
-          <EntitySet Name="NhaTroes" EntityType="Self.NhaTro" />
-          <EntitySet Name="TimTheoGias" EntityType="Self.TimTheoGia" />
-          <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
-          <AssociationSet Name="FK_AnhTro_NhaTro" Association="Self.FK_AnhTro_NhaTro">
-            <End Role="NhaTro" EntitySet="NhaTroes" />
-            <End Role="AnhTro" EntitySet="AnhTroes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NhaTro_NhaTro_FKTTChuTRo" Association="Self.FK_NhaTro_NhaTro_FKTTChuTRo">
-            <End Role="ChuTro" EntitySet="ChuTroes" />
-            <End Role="NhaTro" EntitySet="NhaTroes" />
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
+          <EntitySet Name="customs" EntityType="Self.custom" />
+          <EntitySet Name="Hosts" EntityType="Self.Host" />
+          <EntitySet Name="ImageMotels" EntityType="Self.ImageMotel" />
+          <EntitySet Name="motels" EntityType="Self.motel" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="searchprices" EntityType="Self.searchprice" />
+          <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
+            <End Role="area" EntitySet="areas" />
+            <End Role="motel" EntitySet="motels" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_DanhMucTro_FKMADM" Association="Self.FK_NhaTro_DanhMucTro_FKMADM">
-            <End Role="DanhMucTro" EntitySet="DanhMucTroes" />
-            <End Role="NhaTro" EntitySet="NhaTroes" />
+            <End Role="CategoryMotel" EntitySet="CategoryMotels" />
+            <End Role="motel" EntitySet="motels" />
           </AssociationSet>
-          <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
-            <End Role="KhuVuc" EntitySet="KhuVucs" />
-            <End Role="NhaTro" EntitySet="NhaTroes" />
+          <AssociationSet Name="FK_NhaTro_NhaTro_FKTTChuTRo" Association="Self.FK_NhaTro_NhaTro_FKTTChuTRo">
+            <End Role="Host" EntitySet="Hosts" />
+            <End Role="motel" EntitySet="motels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnhTro_NhaTro" Association="Self.FK_AnhTro_NhaTro">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="ImageMotel" EntitySet="ImageMotels" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_TimTheoGia_FKTimGia" Association="Self.FK_NhaTro_TimTheoGia_FKTimGia">
-            <End Role="TimTheoGia" EntitySet="TimTheoGias" />
-            <End Role="NhaTro" EntitySet="NhaTroes" />
+            <End Role="searchprice" EntitySet="searchprices" />
+            <End Role="motel" EntitySet="motels" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -397,102 +397,102 @@
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
-                <ScalarProperty Name="MaAD" ColumnName="MaAD" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+                <ScalarProperty Name="IDAdmin" ColumnName="IDAdmin" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="permission" ColumnName="permission" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AnhTroes">
-            <EntityTypeMapping TypeName="NhaTroModel.AnhTro">
-              <MappingFragment StoreEntitySet="AnhTro">
-                <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
-                <ScalarProperty Name="Anh" ColumnName="Anh" />
-                <ScalarProperty Name="MaTro" ColumnName="MaTro" />
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="NhaTroModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChuTroes">
-            <EntityTypeMapping TypeName="NhaTroModel.ChuTro">
-              <MappingFragment StoreEntitySet="ChuTro">
-                <ScalarProperty Name="MaChuTro" ColumnName="MaChuTro" />
-                <ScalarProperty Name="TenChuTro" ColumnName="TenChuTro" />
-                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+          <EntitySetMapping Name="CategoryMotels">
+            <EntityTypeMapping TypeName="NhaTroModel.CategoryMotel">
+              <MappingFragment StoreEntitySet="CategoryMotel">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DanhMucTroes">
-            <EntityTypeMapping TypeName="NhaTroModel.DanhMucTro">
-              <MappingFragment StoreEntitySet="DanhMucTro">
-                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
-                <ScalarProperty Name="TheLoai" ColumnName="TheLoai" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KHACHHANGs">
-            <EntityTypeMapping TypeName="NhaTroModel.KHACHHANG">
-              <MappingFragment StoreEntitySet="KHACHHANG">
-                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <EntitySetMapping Name="customs">
+            <EntityTypeMapping TypeName="NhaTroModel.custom">
+              <MappingFragment StoreEntitySet="custom">
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="KhuVucs">
-            <EntityTypeMapping TypeName="NhaTroModel.KhuVuc">
-              <MappingFragment StoreEntitySet="KhuVuc">
-                <ScalarProperty Name="MaKhuVuc" ColumnName="MaKhuVuc" />
-                <ScalarProperty Name="TenKhuVuc" ColumnName="TenKhuVuc" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+          <EntitySetMapping Name="Hosts">
+            <EntityTypeMapping TypeName="NhaTroModel.Host">
+              <MappingFragment StoreEntitySet="Host">
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NhaTroes">
-            <EntityTypeMapping TypeName="NhaTroModel.NhaTro">
-              <MappingFragment StoreEntitySet="NhaTro">
-                <ScalarProperty Name="MaTro" ColumnName="MaTro" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="IDTimGia" ColumnName="IDTimGia" />
-                <ScalarProperty Name="DienTich" ColumnName="DienTich" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="MaKhuVuc" ColumnName="MaKhuVuc" />
-                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
-                <ScalarProperty Name="Anh" ColumnName="Anh" />
-                <ScalarProperty Name="MaChuTro" ColumnName="MaChuTro" />
+          <EntitySetMapping Name="ImageMotels">
+            <EntityTypeMapping TypeName="NhaTroModel.ImageMotel">
+              <MappingFragment StoreEntitySet="ImageMotel">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TimTheoGias">
-            <EntityTypeMapping TypeName="NhaTroModel.TimTheoGia">
-              <MappingFragment StoreEntitySet="TimTheoGia">
-                <ScalarProperty Name="IDTimGia" ColumnName="IDTimGia" />
-                <ScalarProperty Name="GiaTu" ColumnName="GiaTu" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <EntitySetMapping Name="motels">
+            <EntityTypeMapping TypeName="NhaTroModel.motel">
+              <MappingFragment StoreEntitySet="motel">
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Acreage" ColumnName="Acreage" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiledDate" ColumnName="ModifiledDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TinTucs">
-            <EntityTypeMapping TypeName="NhaTroModel.TinTuc">
-              <MappingFragment StoreEntitySet="TinTuc">
-                <ScalarProperty Name="MaTinTuc" ColumnName="MaTinTuc" />
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
-                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="NhaTroModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewID" ColumnName="NewID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="searchprices">
+            <EntityTypeMapping TypeName="NhaTroModel.searchprice">
+              <MappingFragment StoreEntitySet="searchprice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PriceFrom" ColumnName="PriceFrom" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

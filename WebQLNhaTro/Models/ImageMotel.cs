@@ -12,12 +12,12 @@ namespace WebQLNhaTro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AnhTro
+    public partial class ImageMotel
     {
-        public int MaAnh { get; set; }
-        public string Anh { get; set; }
-        public int MaTro { get; set; }
+        public int ImageId { get; set; }
+        public string Image { get; set; }
+        public int HostID { get; set; }
     
-        public virtual NhaTro NhaTro { get; set; }
+        public virtual motel motel { get; set; }
     }
 }

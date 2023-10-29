@@ -12,20 +12,19 @@ namespace WebQLNhaTro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KhuVuc
+    public partial class CategoryMotel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhuVuc()
+        public CategoryMotel()
         {
-            this.NhaTroes = new HashSet<NhaTro>();
+            this.motels = new HashSet<motel>();
         }
     
-        public int MaKhuVuc { get; set; }
-        public string TenKhuVuc { get; set; }
-        public System.DateTime NgayDang { get; set; }
-        public System.DateTime NgaySua { get; set; }
+        public int CategoryID { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhaTro> NhaTroes { get; set; }
+        public virtual ICollection<motel> motels { get; set; }
     }
 }

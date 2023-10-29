@@ -26,13 +26,13 @@ namespace WebQLNhaTro.Models
         }
     
         public virtual DbSet<ADMIN> ADMINs { get; set; }
-        public virtual DbSet<AnhTro> AnhTroes { get; set; }
-        public virtual DbSet<ChuTro> ChuTroes { get; set; }
-        public virtual DbSet<DanhMucTro> DanhMucTroes { get; set; }
-        public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
-        public virtual DbSet<KhuVuc> KhuVucs { get; set; }
-        public virtual DbSet<NhaTro> NhaTroes { get; set; }
-        public virtual DbSet<TimTheoGia> TimTheoGias { get; set; }
-        public virtual DbSet<TinTuc> TinTucs { get; set; }
+        public virtual DbSet<area> areas { get; set; }
+        public virtual DbSet<CategoryMotel> CategoryMotels { get; set; }
+        public virtual DbSet<custom> customs { get; set; }
+        public virtual DbSet<Host> Hosts { get; set; }
+        public virtual DbSet<ImageMotel> ImageMotels { get; set; }
+        public virtual DbSet<motel> motels { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<searchprice> searchprices { get; set; }
     }
 }

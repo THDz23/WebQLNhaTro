@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebQLNhaTro.Models.KhuVuc>
+﻿@model IEnumerable<WebQLNhaTro.Models.area>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -14,7 +14,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/khuvuc" class="nav-link">Khu vực</a>
+            <a href="/admin/location" class="nav-link">Khu vực</a>
         </li>
     </ul>
 }
@@ -28,7 +28,7 @@
             <h3 class="card-title">Danh sách danh mục</h3>
 
             <div class="card-tools">
-                <a href="/admin/khuvuc/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/location/add" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
@@ -45,12 +45,12 @@
                     @foreach (var kv in Model)
                     {
                         <tr>
-                            <td>@kv.MaKhuVuc</td>
-                            <td>@kv.TenKhuVuc</td>
-                            <td>@kv.NgayDang</td>
+                            <td>@kv.AreaID</td>
+                            <td>@kv.ProvinceName</td>
+                            <td>@kv.CreateDate</td>
                             <td>
-                                <a href="/admin/khuvuc/edit" class="btn btn-sm btn-primary">Sửa</a>
-                                <a href="/admin/khuvuc/delete" class="btn btn-sm btn-danger">Xóa</a>
+                                <a href="/admin/location/edit/@kv.AreaID" class="btn btn-sm btn-primary">Sửa</a>
+                                <a href="/admin/location/delete/@kv.AreaID" class="btn btn-sm btn-danger">Xóa</a>
                             </td>
                         </tr>
                     }

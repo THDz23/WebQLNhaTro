@@ -12,13 +12,13 @@ namespace WebQLNhaTro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TinTuc
+    public partial class News
     {
-        public int MaTinTuc { get; set; }
-        public string TieuDe { get; set; }
-        public string ChiTiet { get; set; }
-        public string AnhDaiDien { get; set; }
-        public System.DateTime NgayDang { get; set; }
-        public System.DateTime NgaySua { get; set; }
+        public int NewID { get; set; }
+        public string Title { get; set; }
+        public string Decription { get; set; }
+        public string avatar { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public System.DateTime ModifiedDate { get; set; }
     }
 }

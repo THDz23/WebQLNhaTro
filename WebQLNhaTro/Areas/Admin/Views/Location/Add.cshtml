@@ -1,4 +1,4 @@
-﻿@model WebQLNhaTro.Models.KhuVuc
+﻿@model WebQLNhaTro.Models.area
 @{
     ViewBag.Title = "Add";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -31,16 +31,16 @@
         </div>
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Add", "khuvuc", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Add", "Location", FormMethod.Post, new { }))
                 {
                     <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên khu vực</label>
-                            @Html.TextBoxFor(x=>x.TenKhuVuc,new {@class = "form-control", @placeholder = "Tên khu vực" })
+                            @Html.TextBoxFor(x=>x.ProvinceName, new {@class = "form-control", @placeholder = "Tên khu vực" })
                         </div>
 
                         <div class="form-group">
-                            <a href="/admin/khuvuc" class="btn btn-danger">Quay lại</a>
+                            <a href="/admin/location" class="btn btn-danger">Quay lại</a>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>

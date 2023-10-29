@@ -12,21 +12,21 @@ namespace WebQLNhaTro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChuTro
+    public partial class Host
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChuTro()
+        public Host()
         {
-            this.NhaTroes = new HashSet<NhaTro>();
+            this.motels = new HashSet<motel>();
         }
     
-        public int MaChuTro { get; set; }
-        public string TenChuTro { get; set; }
-        public string DienThoai { get; set; }
+        public int HostID { get; set; }
+        public string OwnerName { get; set; }
+        public string Phone { get; set; }
         public string Email { get; set; }
-        public string TaiKhoan { get; set; }
+        public string Account { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhaTro> NhaTroes { get; set; }
+        public virtual ICollection<motel> motels { get; set; }
     }
 }
