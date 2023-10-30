@@ -9,8 +9,8 @@
           <Key>
             <PropertyRef Name="IDAdmin" />
           </Key>
-          <Property Name="IDAdmin" Type="int" Nullable="false" />
-          <Property Name="Account" Type="nvarchar(max)" />
+          <Property Name="IDAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="permission" Type="int" />
         </EntityType>
@@ -50,7 +50,7 @@
           <Property Name="OwnerName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="10" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Account" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IDADmin" Type="int" />
         </EntityType>
         <EntityType Name="ImageMotel">
           <Key>
@@ -58,7 +58,7 @@
           </Key>
           <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" />
-          <Property Name="HostID" Type="int" Nullable="false" />
+          <Property Name="MotelID" Type="int" />
         </EntityType>
         <EntityType Name="motel">
           <Key>
@@ -98,14 +98,38 @@
           <Property Name="PriceFrom" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK_AnhTro_NhaTro">
-          <End Role="motel" Type="Self.motel" Multiplicity="1" />
+        <Association Name="FK_Host_ADMIN_KHOS">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="Host" Type="Self.Host" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="IDAdmin" />
+            </Principal>
+            <Dependent Role="Host">
+              <PropertyRef Name="IDADmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageMotel_motel_NoiKhoa">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
           <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="motel">
               <PropertyRef Name="MotelID" />
             </Principal>
             <Dependent Role="ImageMotel">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_motel_Host_KhoaChinh">
+          <End Role="Host" Type="Self.Host" Multiplicity="1" />
+          <End Role="motel" Type="Self.motel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="motel">
               <PropertyRef Name="HostID" />
             </Dependent>
           </ReferentialConstraint>
@@ -134,18 +158,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NhaTro_NhaTro_FKTTChuTRo">
-          <End Role="Host" Type="Self.Host" Multiplicity="1" />
-          <End Role="motel" Type="Self.motel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Host">
-              <PropertyRef Name="HostID" />
-            </Principal>
-            <Dependent Role="motel">
-              <PropertyRef Name="HostID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NhaTro_TimTheoGia_FKTimGia">
           <End Role="searchprice" Type="Self.searchprice" Multiplicity="1" />
           <End Role="motel" Type="Self.motel" Multiplicity="*" />
@@ -168,9 +180,17 @@
           <EntitySet Name="motel" EntityType="Self.motel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="searchprice" EntityType="Self.searchprice" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AnhTro_NhaTro" Association="Self.FK_AnhTro_NhaTro">
+          <AssociationSet Name="FK_Host_ADMIN_KHOS" Association="Self.FK_Host_ADMIN_KHOS">
+            <End Role="ADMIN" EntitySet="ADMIN" />
+            <End Role="Host" EntitySet="Host" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageMotel_motel_NoiKhoa" Association="Self.FK_ImageMotel_motel_NoiKhoa">
             <End Role="motel" EntitySet="motel" />
             <End Role="ImageMotel" EntitySet="ImageMotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_motel_Host_KhoaChinh" Association="Self.FK_motel_Host_KhoaChinh">
+            <End Role="Host" EntitySet="Host" />
+            <End Role="motel" EntitySet="motel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_DanhMucTro_FKMADM" Association="Self.FK_NhaTro_DanhMucTro_FKMADM">
             <End Role="CategoryMotel" EntitySet="CategoryMotel" />
@@ -178,10 +198,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
             <End Role="area" EntitySet="area" />
-            <End Role="motel" EntitySet="motel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NhaTro_NhaTro_FKTTChuTRo" Association="Self.FK_NhaTro_NhaTro_FKTTChuTRo">
-            <End Role="Host" EntitySet="Host" />
             <End Role="motel" EntitySet="motel" />
           </AssociationSet>
           <AssociationSet Name="FK_NhaTro_TimTheoGia_FKTimGia" Association="Self.FK_NhaTro_TimTheoGia_FKTimGia">
@@ -198,10 +214,11 @@
           <Key>
             <PropertyRef Name="IDAdmin" />
           </Key>
-          <Property Name="IDAdmin" Type="Int32" Nullable="false" />
-          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="permission" Type="Int32" />
+          <NavigationProperty Name="Hosts" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="ADMIN" ToRole="Host" />
         </EntityType>
         <EntityType Name="area">
           <Key>
@@ -241,8 +258,9 @@
           <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="Host" ToRole="motel" />
+          <Property Name="IDADmin" Type="Int32" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="Host" ToRole="ADMIN" />
+          <NavigationProperty Name="motels" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="Host" ToRole="motel" />
         </EntityType>
         <EntityType Name="ImageMotel">
           <Key>
@@ -250,8 +268,8 @@
           </Key>
           <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HostID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="motel" Relationship="Self.FK_AnhTro_NhaTro" FromRole="ImageMotel" ToRole="motel" />
+          <Property Name="MotelID" Type="Int32" />
+          <NavigationProperty Name="motel" Relationship="Self.FK_ImageMotel_motel_NoiKhoa" FromRole="ImageMotel" ToRole="motel" />
         </EntityType>
         <EntityType Name="motel">
           <Key>
@@ -273,8 +291,8 @@
           <Property Name="HostID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="area" Relationship="Self.FK_NhaTro_KhuVuc_FKKhuVuc" FromRole="motel" ToRole="area" />
           <NavigationProperty Name="CategoryMotel" Relationship="Self.FK_NhaTro_DanhMucTro_FKMADM" FromRole="motel" ToRole="CategoryMotel" />
-          <NavigationProperty Name="Host" Relationship="Self.FK_NhaTro_NhaTro_FKTTChuTRo" FromRole="motel" ToRole="Host" />
-          <NavigationProperty Name="ImageMotels" Relationship="Self.FK_AnhTro_NhaTro" FromRole="motel" ToRole="ImageMotel" />
+          <NavigationProperty Name="Host" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="motel" ToRole="Host" />
+          <NavigationProperty Name="ImageMotels" Relationship="Self.FK_ImageMotel_motel_NoiKhoa" FromRole="motel" ToRole="ImageMotel" />
           <NavigationProperty Name="searchprice" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="motel" ToRole="searchprice" />
         </EntityType>
         <EntityType Name="News">
@@ -297,6 +315,18 @@
           <Property Name="CreateDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="motels" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="searchprice" ToRole="motel" />
         </EntityType>
+        <Association Name="FK_Host_ADMIN_KHOS">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="Host" Type="Self.Host" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="IDAdmin" />
+            </Principal>
+            <Dependent Role="Host">
+              <PropertyRef Name="IDADmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NhaTro_KhuVuc_FKKhuVuc">
           <End Role="area" Type="Self.area" Multiplicity="1" />
           <End Role="motel" Type="Self.motel" Multiplicity="*" />
@@ -321,7 +351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NhaTro_NhaTro_FKTTChuTRo">
+        <Association Name="FK_motel_Host_KhoaChinh">
           <End Role="Host" Type="Self.Host" Multiplicity="1" />
           <End Role="motel" Type="Self.motel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,15 +363,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AnhTro_NhaTro">
-          <End Role="motel" Type="Self.motel" Multiplicity="1" />
+        <Association Name="FK_ImageMotel_motel_NoiKhoa">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
           <End Role="ImageMotel" Type="Self.ImageMotel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="motel">
               <PropertyRef Name="MotelID" />
             </Principal>
             <Dependent Role="ImageMotel">
-              <PropertyRef Name="HostID" />
+              <PropertyRef Name="MotelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NhaTroEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
@@ -367,6 +397,10 @@
           <EntitySet Name="motels" EntityType="Self.motel" />
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="searchprices" EntityType="Self.searchprice" />
+          <AssociationSet Name="FK_Host_ADMIN_KHOS" Association="Self.FK_Host_ADMIN_KHOS">
+            <End Role="ADMIN" EntitySet="ADMINs" />
+            <End Role="Host" EntitySet="Hosts" />
+          </AssociationSet>
           <AssociationSet Name="FK_NhaTro_KhuVuc_FKKhuVuc" Association="Self.FK_NhaTro_KhuVuc_FKKhuVuc">
             <End Role="area" EntitySet="areas" />
             <End Role="motel" EntitySet="motels" />
@@ -375,11 +409,11 @@
             <End Role="CategoryMotel" EntitySet="CategoryMotels" />
             <End Role="motel" EntitySet="motels" />
           </AssociationSet>
-          <AssociationSet Name="FK_NhaTro_NhaTro_FKTTChuTRo" Association="Self.FK_NhaTro_NhaTro_FKTTChuTRo">
+          <AssociationSet Name="FK_motel_Host_KhoaChinh" Association="Self.FK_motel_Host_KhoaChinh">
             <End Role="Host" EntitySet="Hosts" />
             <End Role="motel" EntitySet="motels" />
           </AssociationSet>
-          <AssociationSet Name="FK_AnhTro_NhaTro" Association="Self.FK_AnhTro_NhaTro">
+          <AssociationSet Name="FK_ImageMotel_motel_NoiKhoa" Association="Self.FK_ImageMotel_motel_NoiKhoa">
             <End Role="motel" EntitySet="motels" />
             <End Role="ImageMotel" EntitySet="ImageMotels" />
           </AssociationSet>
@@ -393,7 +427,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities">
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities1">
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
@@ -442,7 +476,7 @@
                 <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="IDADmin" ColumnName="IDADmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -451,7 +485,7 @@
               <MappingFragment StoreEntitySet="ImageMotel">
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="HostID" ColumnName="HostID" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

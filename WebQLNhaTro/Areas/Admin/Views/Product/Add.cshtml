@@ -1,0 +1,211 @@
+﻿@using WebQLNhaTro.Models
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/home" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/product" class="nav-link">Sản phẩm</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
+@{ 
+    ADMIN ad = (ADMIN)Session["Account"];
+    var db = new WebQLNhaTro.Models.NhaTroEntities1();
+    var owner = db.Hosts.Where(a => a.IDADmin == ad.IDAdmin);
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới sản phẩm </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm mới</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tên nhà trọ:</label>
+                                        <input type="text" name="txtTenTro" class="form-control" placeholder="Tên nhà trọ" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh đại diện:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fileUp" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Địa chỉ:</label>
+                                        <input type="text" name="txtDiaChi" class="form-control" placeholder="Địa chỉ" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Chi tiết:</label>
+                                        <textarea name="sMoTa" id="mota" class="form-control"></textarea>
+                                        <script>CKEDITOR.replace('mota');</script>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Diện tích:</label>
+                                                <input type="text" name="dientich" class="form-control" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Giá:</label>
+                                                <input type="text" name="gia" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Lọc giá:</label>
+                                                @Html.DropDownList("GiaTu", (IEnumerable<SelectListItem>)ViewBag.Gia, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Khu vực:</label>
+                                                @Html.DropDownList("KhuVuc", (IEnumerable<SelectListItem>)ViewBag.KhuVuc, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Danh mục:</label>
+                                                @Html.DropDownList("DanhMuc", (IEnumerable<SelectListItem>)ViewBag.DanhMuc, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                       
+                                            @foreach (var sp in owner)
+                                            {
+                                            <div class="col-10">
+                                                <div class="form-group">
+                                                    <label for="exampleInputFile">Chủ:</label>
+                                                    <input type="text" name="chu" class="form-control" value="@sp.OwnerName" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputFile">Mã:</label>
+                                                    <input type="text" name="Ma" class="form-control" value="@sp.HostID" readonly />
+                                                </div>
+                                            </div>
+                                            }
+                                       
+                                    </div>
+                                </div>
+
+                                
+
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="timeline">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh 1</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fFileUpload[0]" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh 2</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fFileUpload[1]" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh 3</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fFileUpload[2]" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh 4</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fFileUpload[3]" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Thêm mới</button>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                }
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->

@@ -16,7 +16,7 @@ namespace WebQLNhaTro.Models
     {
         public int ImageId { get; set; }
         public string Image { get; set; }
-        public int HostID { get; set; }
+        public Nullable<int> MotelID { get; set; }
     
         public virtual motel motel { get; set; }
     }
