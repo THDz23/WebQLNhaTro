@@ -44,56 +44,56 @@
 
     <!--/ Form Search Star /-->
     @*<div class="box-collapse">
-        <div class="title-box-d">
-            <h3 class="title-d">Tìm kiếm phòng trọ</h3>
-        </div>
-        <span class="close-box-collapse right-boxed ion-ios-close"></span>
-        <div class="box-collapse-wrap form">
-            <form class="form-a">
-                <div class="row">
-                    <div class="col-md-12 mb-2">
-                        <div class="form-group">
-                            <label for="Type">Tên phòng trọ</label>
-                            <input type="text" class="form-control form-control-lg form-control-a" placeholder="Tên phòng trọ">
+            <div class="title-box-d">
+                <h3 class="title-d">Tìm kiếm phòng trọ</h3>
+            </div>
+            <span class="close-box-collapse right-boxed ion-ios-close"></span>
+            <div class="box-collapse-wrap form">
+                <form class="form-a">
+                    <div class="row">
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                                <label for="Type">Tên phòng trọ</label>
+                                <input type="text" class="form-control form-control-lg form-control-a" placeholder="Tên phòng trọ">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="Type">Khu vực</label>
+                                <select class="form-control form-control-lg form-control-a" id="Type">
+                                    <option>Thủ Dầu Một</option>
+                                    <option>Thuận An</option>
+                                    <option>Tân Uyên</option>
+                                    <option>Bến Cát</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="city">Gần trường TDMU</label>
+                                <select class="form-control form-control-lg form-control-a" id="city">
+                                    <option>Có</option>
+                                    <option>Không</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="rent">Giá</label>
+                                <select class="form-control form-control-lg form-control-a" id="rent">
+                                    <option>Dưới 1 triệu</option>
+                                    <option>1 triệu - 2 triệu</option>
+                                    <option>Trên 2 triệu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-b">Tìm kiếm</button>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group">
-                            <label for="Type">Khu vực</label>
-                            <select class="form-control form-control-lg form-control-a" id="Type">
-                                <option>Thủ Dầu Một</option>
-                                <option>Thuận An</option>
-                                <option>Tân Uyên</option>
-                                <option>Bến Cát</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group">
-                            <label for="city">Gần trường TDMU</label>
-                            <select class="form-control form-control-lg form-control-a" id="city">
-                                <option>Có</option>
-                                <option>Không</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group">
-                            <label for="rent">Giá</label>
-                            <select class="form-control form-control-lg form-control-a" id="rent">
-                                <option>Dưới 1 triệu</option>
-                                <option>1 triệu - 2 triệu</option>
-                                <option>Trên 2 triệu</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-b">Tìm kiếm</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>*@
+                </form>
+            </div>
+        </div>*@
 
     <!--/ Form Search End /-->
     <!--/ Nav Star -->
@@ -136,7 +136,6 @@
         </div>
     </nav>
     <!-- Nav End /-->
-    
     <!--/ Services End /-->
     <!--/ Property Star /-->
     <section class="section-property section-t8">
@@ -145,7 +144,7 @@
         </div>
     </section>
 
-  
+
     <!--/ Property End /-->
     <!--/ Agents Star /-->
 
@@ -373,7 +372,7 @@
     <!-- Template Main Javascript File -->
     <script src="~/Content/clientss/js/main.js"></script>
     <script src="~/Content/clientss/js/rangeslider.js"></script>
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
+    
     public class HomeController : Controller
     {
         // GET: Admin/Home

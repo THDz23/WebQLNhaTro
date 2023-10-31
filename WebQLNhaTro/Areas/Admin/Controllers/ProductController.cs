@@ -8,9 +8,10 @@ using System.IO;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
-        NhaTroEntities1 db = new NhaTroEntities1();
+        NhaTroEntities db = new NhaTroEntities();
         // GET: Admin/Product
         public ActionResult Index()
         {
@@ -21,7 +22,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
         {
             if(Session["Account"] == null || Session["Account"].ToString() == "")
             {
-                return RedirectToAction("Login", "User", new { url = "https://localhost:44353/Admin/Product/Add" });
+                return RedirectToAction("Login", "Account", new { url = "https://localhost:44353/Admin/Product/Add" });
             }
             ViewBag.GiaTu = new SelectList(db.searchprices.ToList(), "ID", "PriceFrom");
             ViewBag.KhuVuc = new SelectList(db.areas.ToList(), "AreaID", "ProvinceName");

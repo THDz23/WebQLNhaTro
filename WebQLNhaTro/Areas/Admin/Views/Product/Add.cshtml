@@ -23,7 +23,7 @@
 }
 @{ 
     ADMIN ad = (ADMIN)Session["Account"];
-    var db = new WebQLNhaTro.Models.NhaTroEntities1();
+    var db = new WebQLNhaTro.Models.NhaTroEntities();
     var owner = db.Hosts.Where(a => a.IDADmin == ad.IDAdmin);
 }
 <section class="content-header">

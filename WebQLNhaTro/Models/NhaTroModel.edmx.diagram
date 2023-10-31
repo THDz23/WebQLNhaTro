@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="acda673f7f424caab0ea9bfe37060349" Name="Diagram1">
+      <Diagram DiagramId="3e620a2c31004ad89274a5fff59c0fe3" Name="Diagram1">
         <EntityTypeShape EntityType="NhaTroModel.ADMIN" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NhaTroModel.area" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NhaTroModel.CategoryMotel" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />

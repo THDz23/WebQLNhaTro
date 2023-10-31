@@ -23,7 +23,7 @@ namespace WebQLNhaTro.Models
         public int IDAdmin { get; set; }
         public string Account { get; set; }
         public string password { get; set; }
-        public Nullable<int> permission { get; set; }
+        public string permission { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Host> Hosts { get; set; }

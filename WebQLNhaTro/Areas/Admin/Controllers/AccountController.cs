@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+   
+    public class AccountController : Controller
     {
-        NhaTroEntities1 db = new NhaTroEntities1();
+        NhaTroEntities db = new NhaTroEntities();
         // GET: Admin/User
         public ActionResult Index()
         {
@@ -20,6 +23,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
         {
             return View();
         }
+        //
         
         public ActionResult Login(FormCollection f,string url)
         {

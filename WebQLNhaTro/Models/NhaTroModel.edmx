@@ -12,7 +12,7 @@
           <Property Name="IDAdmin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Account" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
-          <Property Name="permission" Type="int" />
+          <Property Name="permission" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="area">
           <Key>
@@ -217,7 +217,7 @@
           <Property Name="IDAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Account" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="permission" Type="Int32" />
+          <Property Name="permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Hosts" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="ADMIN" ToRole="Host" />
         </EntityType>
         <EntityType Name="area">
@@ -387,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NhaTroEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
@@ -427,7 +427,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities1">
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities">
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">

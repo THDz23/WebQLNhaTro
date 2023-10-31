@@ -12,6 +12,7 @@ namespace WebQLNhaTro
     {
         protected void Application_Start()
         {
+           /* GlobalFilters.Filters.Add(new AuthorizeAttribute()); // cau hinh role*/
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -49,9 +49,9 @@ namespace WebQLNhaTro.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "UserName")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -59,7 +59,7 @@ namespace WebQLNhaTro.Models
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+       public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
