@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model WebQLNhaTro.Models.ADMIN
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Đăng nhập</title>
@@ -33,15 +34,17 @@
                         <img src="~/Image/Login.jpg" alt="IMG">
                     </a>
                 </div>
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Login", "Account",new { returnUrl = Request.QueryString["returnUrl"] },FormMethod.Post))
                 {
+
                     <div class="login100-form validate-form">
                         <span class="login100-form-title">
                             ĐĂNG NHẬP
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="UserName" placeholder="Tên đăng nhập " required>
+                            @Html.TextBoxFor(x => x.Account, new { @class = "input100", @placeholder = "Tên đăng nhập" , required = "required" });
+                          @*  <input class="input100" type="text" name="UserName" placeholder="Tên đăng nhập " required>*@
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope" aria-hidden="false"></i>
@@ -49,7 +52,8 @@
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="password" name="PassWord" placeholder="Mật khẩu" required>
+                            @Html.PasswordFor(x => x.password, new { @class = "input100", @placeholder = "Mật khẩu", required = "required" });
+                           @* <input class="input100" type="password" name="PassWord" placeholder="Mật khẩu" required>*@
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>

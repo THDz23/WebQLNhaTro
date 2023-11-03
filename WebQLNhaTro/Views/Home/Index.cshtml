@@ -1,4 +1,219 @@
-﻿@{
+﻿@model IEnumerable<WebQLNhaTro.Models.motel>
+@{
     ViewBag.Title = "Home Page";
 }
-<h1>Home</h1>
+
+<br />
+<br />
+<br />
+<section class="section-services section-t8">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Dịch vụ của chúng tôi</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                        <div class="card-box-ico">
+                            <i class="fas fa-hands-helping" style="color: #2e72ca; font-size: 60px;"></i>
+                        </div>
+                        <div class="card-title-c align-self-center">
+                            <h2 class="title-c" style="font-size: 35px;">Hỗ trợ</h2>
+                        </div>
+                    </div>
+                    <div class="card-body-c">
+                        <p class="content-c" style="text-align:justify">
+                            Chúng tôi hỗ trợ bạn tìm kiếm phòng trọ trong và ngoài khu vực  một cách nhanh chóng và hiệu quả nhất.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                        <div class="card-box-ico">
+                            <span class="fa fa-usd" style="color: #2e72ca; font-size: 60px;"></span>
+                        </div>
+                        <div class="card-title-c align-self-center">
+                            <h2 class="title-c" style="font-size: 35px;">Giá thành</h2>
+                        </div>
+                    </div>
+                    <div class="card-body-c">
+                        <p class="content-c" style="text-align:justify">
+                            Chúng tôi luôn ưu tiên giới thiệu những phòng trọ với mức giá hợp lý và chất lượng phòng tốt, phù hợp với đa số người dùng đặc biệt là sinh viên.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-box-c foo">
+                    <div class="card-header-c d-flex">
+                        <div class="card-box-ico">
+                            <span class="fa fa-home" style="color: #2e72ca; font-size: 60px;"></span>
+                        </div>
+                        <div class="card-title-c align-self-center">
+                            <h2 class="title-c" style="font-size: 35px;">Cộng đồng</h2>
+                        </div>
+                    </div>
+                    <div class="card-body-c">
+                        <p class="content-c" style="text-align:justify">
+                            Chúng tôi đã và đăng xây dựng một cộng đồng giúp chủ nhà trọ và người thuê nhà kết nối với nhau một cách dễ dàng và thuận tiện hơn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="title-wrap d-flex justify-content-between">
+            <div class="title-box">
+                <h2 class="title-a">Phòng trọ mới nhất</h2>
+            </div>
+            <div class="title-link">
+                <a href="property-grid.html">
+                    Xem tất cả
+                    <span class="ion-ios-arrow-forward"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="property-carousel" class="owl-carousel owl-theme">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var tro in Model)
+        {
+            <div class="carousel-item-b">
+                <div class="card-box-a card-shadow">
+                    <div class="img-box-a">
+                        <img src="~/Image/@tro.Image" alt="" class="img-a img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-overlay-a-content">
+                            <div class="card-header-a">
+                                <h3 class="card-title-a" style="font-size: 1rem">
+                                    <a href="#">@tro.Address</a>
+                                </h3>
+                            </div>
+                            <div class="card-body-a">
+                                <div class="price-box d-flex">
+                                    <span class="price-a">Giá | @tro.Price VNĐ</span>
+                                </div>
+                                <a href="/motels/detail/@tro.MotelID" class="link-a">
+                                    Xem chi tiết
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </div>
+                            <div class="card-footer-a">
+                                <ul class="card-info d-flex justify-content-around">
+                                    <li>
+                                        <h4 class="card-info-title">Diện tích</h4>
+                                        <span>
+                                            @tro.Acreage m
+                                            <sup>2</sup>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <h4 class="card-info-title">Điện</h4>
+                                        <span>2k</span>
+                                    </li>
+                                    <li>
+                                        <h4 class="card-info-title">Nước</h4>
+                                        <span>9k</span>
+                                    </li>
+                                    <li>
+                                        <h4 class="card-info-title">Để xe</h4>
+                                        <span>Có</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+
+<section class="section-testimonials section-t8 nav-arrow-a">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Đáng giá của người dùng</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="testimonial-carousel" class="owl-carousel owl-arrow">
+            <div class="carousel-item-a">
+                <div class="testimonials-box">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="testimonial-img">
+                                <img src="img/user1.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="testimonial-ico">
+                                <span class="ion-ios-quote"></span>
+                            </div>
+                            <div class="testimonials-content">
+                                <p class="testimonial-text">
+                                    Chất lượng dịch vụ trên mức tuyệt vời, vượt ngoài sự mong đợi của tôi.
+                                    Mong hệ thống sẽ ngày càng phát triển hơn nữa.
+                                </p>
+                            </div>
+                            <div class="testimonial-author-box">
+                                <img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
+                                <h5 class="testimonial-author">TrungKenbi</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item-a">
+                <div class="testimonials-box">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="testimonial-img">
+                                <img src="img/user2.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="testimonial-ico">
+                                <span class="ion-ios-quote"></span>
+                            </div>
+                            <div class="testimonials-content">
+                                <p class="testimonial-text">
+                                    Nhờ website mà tôi tìm được một phòng trọ như ý, gần trường mà giá cả lại phải chăng. Sau này tôi nhất định sẽ tiếp tục ủng hộ website.
+                                </p>
+                            </div>
+                            <div class="testimonial-author-box">
+                                <img src="img/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
+                                <h5 class="testimonial-author">DarkPaladinDuy</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

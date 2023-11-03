@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
@@ -19,28 +20,36 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
         //
-        
-        public ActionResult Login(FormCollection f,string url)
+        [HttpPost]
+        public ActionResult Login(ADMIN ad, string returnUrl)
         {
-            var User = f["UserName"];
-            var Pass = f["PassWord"];
-            url = Request["Url"];
-            ADMIN ad = db.ADMINs.SingleOrDefault(a => a.Account == User && a.password == Pass);
-            if(ad != null)
+            var model = db.ADMINs.SingleOrDefault(x => x.Account == ad.Account && x.password == ad.password);
+            if(model != null)
             {
-                ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
-                Session["Account"] = ad;
+                FormsAuthentication.SetAuthCookie(model.Account, false);
+                if(Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                {
+                    Session["Account"] = ad;
+                    return Redirect(returnUrl);
+                }
             }
             else
             {
-                ViewBag.ThongBao = "Vui lòng kiểm tra lại tài khoản,mật khẩu";
+                ViewBag.ThongBao = "Vui lòng kiểm tra lại tài khoản va mật khẩu";
             }
-            return Redirect(url);
+            return View();
+        }
+        public ActionResult SignOut()
+        {
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

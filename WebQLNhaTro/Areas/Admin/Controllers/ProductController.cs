@@ -8,7 +8,7 @@ using System.IO;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "2")]
     public class ProductController : Controller
     {
         NhaTroEntities db = new NhaTroEntities();
@@ -18,17 +18,13 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
             var sp = db.motels;
             return View(sp);
         }
+        
         public ActionResult Add()
         {
-            if(Session["Account"] == null || Session["Account"].ToString() == "")
-            {
-                return RedirectToAction("Login", "Account", new { url = "https://localhost:44353/Admin/Product/Add" });
-            }
             ViewBag.GiaTu = new SelectList(db.searchprices.ToList(), "ID", "PriceFrom");
             ViewBag.KhuVuc = new SelectList(db.areas.ToList(), "AreaID", "ProvinceName");
             ViewBag.DanhMuc = new SelectList(db.CategoryMotels.ToList(), "CategoryID", "Type");
             return View();
-            
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -70,7 +66,6 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
                     tro.Description = f["sMoTa"];
                     tro.AreaID = int.Parse(f["KhuVuc"]);
                     tro.CategoryID = int.Parse(f["DanhMuc"]);
-                 /*   string a = f["Gia"];*/
                     tro.ID = int.Parse(f["GiaTu"]);
                     tro.HostID = int.Parse(f["Ma"]);
                     db.motels.Add(tro);

@@ -1,0 +1,196 @@
+﻿@model WebQLNhaTro.Models.motel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">TIÊU ĐỀ</h1>
+                    <span class="color-text-a" style="color: grey;">@Model.Title</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="property-grid.html">Tìm phòng</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Chi tiết
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  
+<section class="property-single nav-arrow-b">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+                @if (Model.ImageMotels != null && Model.ImageMotels.Any())
+                {
+                    foreach (var anh in Model.ImageMotels)
+                    {
+                        <div class="carousel-item-b" style="background-size: cover">
+                            <img src="~/Image/@anh.Image" alt="" height="500">
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-price d-flex justify-content-center foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-title-c align-self-center">
+                                <h5 class="title-c">@Model.Price VND</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-summary">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d section-t4">
+                                    <h3 class="title-d">Thông tin chung</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summary-list">
+                            <ul class="list">
+                                <li class="d-flex justify-content-between">
+                                    <strong>Mã trọ:</strong>
+                                    <span>@Model.MotelID</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Khu vực:</strong>
+                                    <span>@Model.area.ProvinceName</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Địa chỉ:</strong>
+                                    <span>@Model.Address</span>
+                                </li>
+
+                                <li class="d-flex justify-content-between">
+                                    <strong>Diện tích:</strong>
+                                    <span>
+                                        @Model.Acreage m
+                                        <sup>2</sup>
+                                    </span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Danh mục:</strong>
+                                    <span>@Model.CategoryMotel.Type</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Ngày đăng: </strong>
+                                    <span>@Model.CreateDate</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7 section-md-t3">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box-d">
+                                <h3 class="title-d">Thông tin mô tả</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-description">
+                       @Html.Raw(Model.Description)
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+                <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Bản đồ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-plans-tab" data-toggle="pill" href="#pills-plans" role="tab" aria-controls="pills-plans" aria-selected="false">Liên hệ</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                        <iframe width="1000" height="460" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6939595705!2d106.66442911411806!3d10.986456858287577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d122bc1501c7%3A0xb75503504dfd5643!2zMTMgSHXhu7NuaCBWxINuIEzFqXksIFBow7ogTOG7o2ksIFRo4bunIEThuqd1IE3hu5l0LCBCw6xuaCBExrDGoW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1602321351580!5m2!1svi!2s" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="property-agent">
+                                    <h4 class="title-agent" style="text-align:center">@Model.Host.OwnerName</h4>
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Điện thoại:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Phone</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Zalo:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Phone</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Email:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Email</span>
+                                        </li>
+                                       
+                                    </ul>
+                                    <div class="socials-a">
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-dribbble" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />

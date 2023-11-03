@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MotelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2482,7 +2483,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\anh1.jpg" />
+    <Content Include="Image\anh2.jpg" />
+    <Content Include="Image\anh3.jpg" />
+    <Content Include="Image\anh4.jpg" />
+    <Content Include="Image\anh5.jpg" />
     <Content Include="Image\Login.jpg" />
+    <Content Include="Image\Logo11.jpg" />
     <Content Include="Image\room1.jpg" />
     <Content Include="Image\room2.jpg" />
     <Content Include="Image\room3.jpg" />
@@ -2496,6 +2503,9 @@
     <Content Include="Image\slide4.jpg" />
     <Content Include="Image\slide5.jpg" />
     <Content Include="Image\slide6.jpg" />
+    <Content Include="Image\Tro1.jpg" />
+    <Content Include="Image\Tro2.jpg" />
+    <Content Include="Image\Tro3.jpg" />
     <Content Include="Models\NhaTroModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
@@ -2672,6 +2682,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Motels\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

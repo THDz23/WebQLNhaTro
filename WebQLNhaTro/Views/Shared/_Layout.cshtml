@@ -97,7 +97,7 @@
 
     <!--/ Form Search End /-->
     <!--/ Nav Star -->
-    <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top" style="background-color: #ddeef0 ">
         <div class="container">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
                     aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +105,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <a class="navbar-brand text-brand" href="index.html"><img src="img/tdmu_logo.png" style="width: 30%"></a>
+            <a class="navbar-brand text-brand" href="/home/index"><img src="~/Image/Logo11.jpg" style="width:30%"></a>
             <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
                     data-target="#navbarTogglerDemo01" aria-expanded="false">
                 <span class="fa fa-search" aria-hidden="true"></span>
@@ -138,151 +138,21 @@
     <!-- Nav End /-->
     <!--/ Services End /-->
     <!--/ Property Star /-->
-    <section class="section-property section-t8">
-        <div class="container">
-            @RenderBody();
-        </div>
-    </section>
-
-
     <!--/ Property End /-->
     <!--/ Agents Star /-->
 
-    <section class="section-services section-t8">
+   
+
+
+    
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title-wrap d-flex justify-content-between">
-                        <div class="title-box">
-                            <h2 class="title-a">Dịch vụ của chúng tôi</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
-                            <div class="card-box-ico">
-                                <i class="fas fa-hands-helping" style="color: #2e72ca; font-size: 60px;"></i>
-                            </div>
-                            <div class="card-title-c align-self-center">
-                                <h2 class="title-c" style="font-size: 35px;">Hỗ trợ</h2>
-                            </div>
-                        </div>
-                        <div class="card-body-c">
-                            <p class="content-c" style="text-align:justify">
-                                Chúng tôi hỗ trợ bạn tìm kiếm phòng trọ trong và ngoài khu vực trường Đại học Thủ Dầu Một một cách nhanh chóng và hiệu quả nhất.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
-                            <div class="card-box-ico">
-                                <span class="fa fa-usd" style="color: #2e72ca; font-size: 60px;"></span>
-                            </div>
-                            <div class="card-title-c align-self-center">
-                                <h2 class="title-c" style="font-size: 35px;">Giá thành</h2>
-                            </div>
-                        </div>
-                        <div class="card-body-c">
-                            <p class="content-c" style="text-align:justify">
-                                Chúng tôi luôn ưu tiên giới thiệu những phòng trọ với mức giá hợp lý và chất lượng phòng tốt, phù hợp với đa số người dùng đặc biệt là sinh viên.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
-                            <div class="card-box-ico">
-                                <span class="fa fa-home" style="color: #2e72ca; font-size: 60px;"></span>
-                            </div>
-                            <div class="card-title-c align-self-center">
-                                <h2 class="title-c" style="font-size: 35px;">Cộng đồng</h2>
-                            </div>
-                        </div>
-                        <div class="card-body-c">
-                            <p class="content-c" style="text-align:justify">
-                                Chúng tôi đã và đăng xây dựng một cộng đồng giúp chủ nhà trọ và người thuê nhà kết nối với nhau một cách dễ dàng và thuận tiện hơn.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @RenderBody();
         </div>
-    </section>
+   
 
     <!--/ Agents End /-->
     <!--/ Testimonials Star /-->
-    <section class="section-testimonials section-t8 nav-arrow-a">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title-wrap d-flex justify-content-between">
-                        <div class="title-box">
-                            <h2 class="title-a">Đáng giá của người dùng</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="testimonial-carousel" class="owl-carousel owl-arrow">
-                <div class="carousel-item-a">
-                    <div class="testimonials-box">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="testimonial-img">
-                                    <img src="img/user1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="testimonial-ico">
-                                    <span class="ion-ios-quote"></span>
-                                </div>
-                                <div class="testimonials-content">
-                                    <p class="testimonial-text">
-                                        Chất lượng dịch vụ trên mức tuyệt vời, vượt ngoài sự mong đợi của tôi.
-                                        Mong hệ thống sẽ ngày càng phát triển hơn nữa.
-                                    </p>
-                                </div>
-                                <div class="testimonial-author-box">
-                                    <img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
-                                    <h5 class="testimonial-author">TrungKenbi</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item-a">
-                    <div class="testimonials-box">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="testimonial-img">
-                                    <img src="img/user2.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="testimonial-ico">
-                                    <span class="ion-ios-quote"></span>
-                                </div>
-                                <div class="testimonials-content">
-                                    <p class="testimonial-text">
-                                        Nhờ website mà tôi tìm được một phòng trọ như ý, gần trường mà giá cả lại phải chăng. Sau này tôi nhất định sẽ tiếp tục ủng hộ website.
-                                    </p>
-                                </div>
-                                <div class="testimonial-author-box">
-                                    <img src="img/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
-                                    <h5 class="testimonial-author">DarkPaladinDuy</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!--/ Testimonials End /-->
     <!--/ footer Star /-->
 
@@ -293,7 +163,7 @@
                     <div class="widget-a">
 
                         <div class="w-body-a">
-                            <img src="img/tdmu_logo.png" style="width: 80%;">
+                            <img src="~/Image/Logo11.jpg" style="width: 50%;">
                         </div>
 
                     </div>
@@ -312,7 +182,7 @@
                                     <span class="color-text-a">Điện thoại: </span> 034 6489 037
                                 </li>
                                 <li class="color-a">
-                                    <span class="color-text-a">Email: </span> hieuleggo1280@gmail.com
+                                    <span class="color-text-a">Email: </span> uhudsasww@gmail.com
                                 </li>
                             </ul>
                         </div>
@@ -377,48 +247,3 @@
 </html>
 
 
-@*<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My ASP.NET Application</title>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
-    </html>
-*@

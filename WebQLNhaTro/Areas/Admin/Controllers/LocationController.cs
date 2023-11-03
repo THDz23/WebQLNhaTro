@@ -7,16 +7,19 @@ using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
-   [Authorize]
+    [Authorize(Roles = "1")]
     public class LocationController : Controller
     {
+        
         NhaTroEntities db = new NhaTroEntities();
         // GET: Admin/Location
+       
         public ActionResult Index()
         {
             var kv = db.areas;
             return View(kv);
         }
+       
         public ActionResult Add()
         {
             return View();

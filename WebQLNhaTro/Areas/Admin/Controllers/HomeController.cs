@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
-    
+    [Authorize]
     public class HomeController : Controller
     {
         // GET: Admin/Home

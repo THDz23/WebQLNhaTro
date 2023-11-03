@@ -21,11 +21,9 @@
         </li>
     </ul>
 }
-@{ 
-    ADMIN ad = (ADMIN)Session["Account"];
-    var db = new WebQLNhaTro.Models.NhaTroEntities();
-    var owner = db.Hosts.Where(a => a.IDADmin == ad.IDAdmin);
-}
+
+
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -41,6 +39,12 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+@{
+    ADMIN ad = (ADMIN)Session["Account"];
+    var db = new WebQLNhaTro.Models.NhaTroEntities();
+    var IDad = db.ADMINs.SingleOrDefault(a => a.Account == ad.Account);
+    var owner = db.Hosts.SingleOrDefault(x => x.IDADmin == IDad.IDAdmin);
+}
 
 <section class="content">
 
@@ -126,27 +130,27 @@
                                     </div>
 
                                     <div class="row">
-                                       
-                                            @foreach (var sp in owner)
+
+                                        @if (owner != null)
                                             {
-                                            <div class="col-10">
-                                                <div class="form-group">
-                                                    <label for="exampleInputFile">Chủ:</label>
-                                                    <input type="text" name="chu" class="form-control" value="@sp.OwnerName" readonly />
+                                                <div class="col-10">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputFile">Chủ:</label>
+                                                        <input type="text" name="chu" class="form-control" value="@owner.OwnerName" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-2">
-                                                <div class="form-group">
-                                                    <label for="exampleInputFile">Mã:</label>
-                                                    <input type="text" name="Ma" class="form-control" value="@sp.HostID" readonly />
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputFile">Mã:</label>
+                                                        <input type="text" name="Ma" class="form-control" value="@owner.HostID" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
                                             }
-                                       
+
                                     </div>
                                 </div>
 
-                                
+
 
                                 <!-- /.tab-pane -->
 
@@ -184,6 +188,15 @@
                                         <div class="input-group">
                                             <div class="input-group-append">
                                                 <input type="file" name="fFileUpload[3]" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh 5</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fFileUpload[4]" required  />
                                             </div>
                                         </div>
                                     </div>
