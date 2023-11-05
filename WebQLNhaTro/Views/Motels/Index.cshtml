@@ -1,0 +1,175 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.motel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="intro-single">
+    @using (Html.BeginForm("Index","Motels",FormMethod.Post))   
+    {
+    <div class="row">
+        <div class="col-md-3 mb-2">
+            <div class="form-group">
+                <label for="Type">Tên phòng trọ</label>
+                <input type="text" class="form-control form-control-lg form-control-a" placeholder="Tên phòng trọ">
+            </div>
+        </div>
+        <div class="col-md-2 mb-2">
+            <div class="form-group">
+                <label for="rent">Danh mục</label>
+                @Html.DropDownList("Danhmuc",(IEnumerable<SelectListItem>)ViewBag.Danhmuc, new { @class = "form-control form-control-lg form-control-a" })
+            </div>
+        </div>
+        <div class="col-md-2 mb-2">
+            <div class="form-group">
+                <label for="Type">Khu vực</label>
+                @Html.DropDownList("KhuVuc", (IEnumerable<SelectListItem>)ViewBag.KhuVuc, new { @class = "form-control form-control-lg form-control-a" })
+            </div>
+        </div>
+        <div class="col-md-3 mb-2">
+            <div class="form-group">
+                <label for="city">Giá</label>
+                @Html.DropDownList("GiaTu", (IEnumerable<SelectListItem>)ViewBag.GiaTu, new { @class = "form-control form-control-lg form-control-a" })
+            </div>
+        </div>
+
+        <div class="col-md-2 mb-2">
+            <div class="form-group">
+                <label></label>
+                <button type="submit" class="btn btn-b">Tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+    }
+    
+</section>
+
+<section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="/motel/index">Tất cả phòng trọ</h1>
+                        <span class="color-text-a" style="color:grey">Tìm phòng</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/home/index">Trang chủ</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Tìm phòng
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="property-grid grid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="grid-option">
+
+                        @using (Html.BeginForm())
+                        {
+                            <select class="custom-select" onchange="window.location.href=this.value">
+                                <option selected>Tất cả</option>
+                                <option value="DateNew">Mới nhất</option>
+                                <option value="AscendingPrice">Giá thấp nhất</option>
+                                <option value="DecreasePrice">Giá cao nhất</option>
+                            </select>
+                        }
+                    </div>
+                </div>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var tro in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="~/Image/@tro.Image" alt="" class="img-a img-fluid" style="width:100%">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="#">
+                                                    @tro.Title
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a">@tro.Price VNĐ</span>
+                                            </div>
+                                            <div>
+                                                <span style="color: red">@tro.Address</span>
+                                            </div>
+                                            <a href="/motels/detail/@tro.MotelID" class="link-a">
+                                                Click here to view
+                                                <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Area</h4>
+                                                    <span>
+                                                        @tro.Acreage m
+                                                        <sup>2</sup>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Chủ trọ</h4>
+                                                    <span>@tro.Host.OwnerName</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Điện thoại</h4>
+                                                    <span>@tro.Host.Phone</span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <nav class="pagination-a">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">
+                                    <span class="ion-ios-arrow-back"></span>
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item next">
+                                <a class="page-link" href="#">
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
