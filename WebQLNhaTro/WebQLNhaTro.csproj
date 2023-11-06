@@ -223,6 +223,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Seach.cs" />
     <Compile Include="Models\searchprice.cs">
       <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
@@ -2685,8 +2686,8 @@
     <Content Include="Views\Motels\Detail.cshtml" />
     <Content Include="Views\Motels\Index.cshtml" />
     <Content Include="Views\Motels\AscendingPrice.cshtml" />
-    <Content Include="Views\Motels\DecreasePrice.cshtml" />
     <Content Include="Views\Motels\DateNew.cshtml" />
+    <Content Include="Views\Motels\DecreasePrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
