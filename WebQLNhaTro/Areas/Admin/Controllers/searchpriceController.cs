@@ -8,31 +8,27 @@ using WebQLNhaTro.Models;
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
     [Authorize(Roles = "1")]
-    public class LocationController : Controller
+    public class searchpriceController : Controller
     {
-        
         NhaTroEntities1 db = new NhaTroEntities1();
-        // GET: Admin/Location
-       
+        // GET: Admin/searchprice
         public ActionResult Index()
         {
-            var kv = db.areas;
-            return View(kv);
+            var gia = db.searchprices;
+            return View(gia);
         }
-       
         public ActionResult Add()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Add(area kv,FormCollection f)
+        public ActionResult Add(searchprice gia, FormCollection f)
         {
             if (ModelState.IsValid)
             {
-                kv.ProvinceName = f["ProvinceName"];
-                kv.CreateDate = DateTime.Now;
-                kv.ModifiedDate = DateTime.Now;
-                db.areas.Add(kv);
+                gia.PriceFrom = f["PriceFrom"];
+                gia.CreateDate = DateTime.Now;
+                db.searchprices.Add(gia);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -40,44 +36,44 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var item = db.areas.Find(id);
+            var item = db.searchprices.Find(id);
             return View(item);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(area kv,FormCollection f)
+        public ActionResult Edit(searchprice gia, FormCollection f)
         {
             if (ModelState.IsValid)
             {
-                kv.ModifiedDate = DateTime.Now;
-                kv.ProvinceName = f["Tkv"];
-                kv.AreaID = int.Parse(f["Mkv"]);
-                db.areas.Attach(kv);
-                db.Entry(kv).State = System.Data.Entity.EntityState.Modified;
+                gia.ID = int.Parse(f["ID"]);
+                gia.PriceFrom = f["PriceFrom"];
+                db.searchprices.Attach(gia);
+                db.Entry(gia).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(kv);
+            return View(gia);
         }
         [HttpGet]
         public ActionResult delete(int id)
         {
-            var item = db.areas.Find(id);
+            var item = db.searchprices.Find(id);
             return View(item);
         }
-        [HttpPost,ActionName("delete")]
+        [HttpPost, ActionName("delete")]
         public ActionResult deleteconf(int id)
         {
-            var kv = db.areas.Find(id);
-            var tro = db.motels.Where(tr => tr.AreaID == id);
-            if(tro.Count() > 0)
+            var gia = db.searchprices.Find(id);
+            var tro = db.motels.Where(tr => tr.ID == id);
+            if (tro.Count() > 0)
             {
-                ViewBag.ThongBao = "Khu vực này có trong nhà trọ <br>" + "Không thể xóa";
-                return View(kv);
+                ViewBag.ThongBao = "Phân khúc giá này có trong nhà trọ <br>" + "Không thể xóa";
+                return View(gia);
             }
-            db.areas.Remove(kv);
+            db.searchprices.Remove(gia);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
+
 }

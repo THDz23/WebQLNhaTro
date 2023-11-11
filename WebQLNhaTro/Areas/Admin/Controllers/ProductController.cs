@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     [Authorize(Roles = "2")]
     public class ProductController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        NhaTroEntities1 db = new NhaTroEntities1();
         // GET: Admin/Product
         public ActionResult Index()
         {

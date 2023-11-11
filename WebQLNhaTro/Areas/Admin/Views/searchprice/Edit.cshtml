@@ -1,8 +1,10 @@
-﻿@model WebQLNhaTro.Models.area
+﻿@model WebQLNhaTro.Models.searchprice
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 @section naviheader{
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -13,7 +15,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/Location" class="nav-link">Danh sách khu vực</a>
+            <a href="/admin/searchprice" class="nav-link">Danh sách phân khúc giá</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Cập nhật</a>
@@ -30,25 +32,25 @@
         </div>
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Edit", "Location", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Edit", "searchprice", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    @Html.HiddenFor(x=>x.CreateDate)
-                    
+                    @Html.HiddenFor(x => x.CreateDate)
+
                     <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Mã khu vực</label>
-                            <input type="text" name="Mkv" value="@Model.AreaID" readonly class="form-control" />
+                            <label for="exampleInputEmail1">Mã</label>
+                            <input type="text" name="ID" value="@Model.ID" readonly class="form-control" />
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên khu vực</label>
-                            <input type="text" name="Tkv" value="@Model.ProvinceName" class="form-control" />
+                            <label for="exampleInputEmail1">Giá từ</label>
+                            <input type="text" name="PriceFroms" value="@Model.PriceFrom" class="form-control" />
                         </div>
 
                         <div class="form-group">
-                            <a href="/admin/location" class="btn btn-danger">Quay lại</a>
+                            <a href="/admin/searchprice" class="btn btn-danger">Quay lại</a>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
@@ -60,4 +62,6 @@
     <!-- /.card -->
 
 </section>
+
+
 
