@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.CategoryMotel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/home" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/category" class="nav-link">Danh mục trọ</a>
+        </li>
+    </ul>
+}
+
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Danh sách danh mục trọ </h3>
+
+            <div class="card-tools">
+                <a href="/admin/category/add" class="btn btn-primary">Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã loại</th>
+                        <th>Kiểu</th>
+                        <th>Miêu tả</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tro in Model)
+                    {
+                        <tr>
+                            <td>@tro.CategoryID</td>
+                            <td>@tro.Type</td>
+                            <td>@tro.Description</td>
+                            <td>
+                                <a href="/admin/category/edit/@tro.CategoryID" class="btn btn-sm btn-primary">Sửa</a>
+                                <a href="/admin/category/delete/@tro.CategoryID" class="btn btn-sm btn-danger">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+
+    </div>
+    <!-- /.card -->
+
+</section>
+
+
+

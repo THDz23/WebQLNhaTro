@@ -1,0 +1,54 @@
+﻿@model WebQLNhaTro.Models.searchprice
+
+@{
+    ViewBag.Title = "delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+</style>
+<h2 style="text-align:center">XÁC THỰC THÔNG TIN</h2>
+
+<h3 style="text-align:center;color:red">BẠN THỰC SỰ MUỐN XÓA ??</h3>
+<h4 style="text-align:center;color:red">@Html.Raw(ViewBag.ThongBao)</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="text-align:center">
+        <dt>
+            Mã:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+
+        <dt>
+            Giá từ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceFrom)
+        </dd>
+
+        <dt>
+            Ngày đăng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("delete", "searchprice", FormMethod.Post, new { }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("QUAY VỀ TRANG CHỦ", "Index")
+        </div>
+    }
+</div>
+
+

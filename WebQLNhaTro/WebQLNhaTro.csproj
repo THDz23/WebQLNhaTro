@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebQLNhaTro</RootNamespace>
     <AssemblyName>WebQLNhaTro</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -170,10 +171,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\searchpriceController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -183,48 +186,48 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ADMIN.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\area.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryMotel.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\custom.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Host.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageMotel.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\motel.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\News.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModel.Context.cs">
+    <Compile Include="Models\NhaTroModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModel.Context.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModel.cs">
+    <Compile Include="Models\NhaTroModels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModel.Designer.cs">
+    <Compile Include="Models\NhaTroModels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+      <DependentUpon>NhaTroModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\searchprice.cs">
-      <DependentUpon>NhaTroModel.tt</DependentUpon>
+      <DependentUpon>NhaTroModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WebRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2506,15 +2509,15 @@
     <Content Include="Image\Tro1.jpg" />
     <Content Include="Image\Tro2.jpg" />
     <Content Include="Image\Tro3.jpg" />
-    <Content Include="Models\NhaTroModel.Context.tt">
+    <Content Include="Models\NhaTroModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhaTroModel.edmx</DependentUpon>
-      <LastGenOutput>NhaTroModel.Context.cs</LastGenOutput>
+      <DependentUpon>NhaTroModels.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModels.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NhaTroModel.tt">
+    <Content Include="Models\NhaTroModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhaTroModel.edmx</DependentUpon>
-      <LastGenOutput>NhaTroModel.cs</LastGenOutput>
+      <DependentUpon>NhaTroModels.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModels.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2630,13 +2633,21 @@
     <Content Include="Content\ckeditor\README.md" />
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
-    <EntityDeploy Include="Models\NhaTroModel.edmx">
+    <EntityDeploy Include="Models\NhaTroModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NhaTroModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NhaTroModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\NhaTroModel.edmx.diagram">
-      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+    <Content Include="Models\NhaTroModels.edmx.diagram">
+      <DependentUpon>NhaTroModels.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\delete.cshtml" />
+    <Content Include="Areas\Admin\Views\searchprice\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\searchprice\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\searchprice\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\searchprice\delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
