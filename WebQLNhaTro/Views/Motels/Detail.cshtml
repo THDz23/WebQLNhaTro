@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
 
 <section class="intro-single">
     <div class="container">
@@ -34,7 +36,7 @@
 </section>
 
 
-  
+
 <section class="property-single nav-arrow-b">
     <div class="row">
         <div class="col-sm-12">
@@ -110,7 +112,7 @@
                         </div>
                     </div>
                     <div class="property-description">
-                       @Html.Raw(Model.Description)
+                        @Html.Raw(Model.Description)
                     </div>
 
                 </div>
@@ -126,8 +128,9 @@
 
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
-                        <iframe width="1000" height="460" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.6939595705!2d106.66442911411806!3d10.986456858287577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d122bc1501c7%3A0xb75503504dfd5643!2zMTMgSHXhu7NuaCBWxINuIEzFqXksIFBow7ogTOG7o2ksIFRo4bunIEThuqd1IE3hu5l0LCBCw6xuaCBExrDGoW5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1602321351580!5m2!1svi!2s" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">                       
+                            <input type='text' id='addressInput' placeholder='Enter an address' value="@Model.Address" hidden />
+                            <div id='map' style='width: 100%; height: 400px;'></div>     
                     </div>
 
                     <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
@@ -148,7 +151,7 @@
                                             <strong>Email:</strong>
                                             <span class="color-text-a" style="color: grey;">@Model.Host.Email</span>
                                         </li>
-                                       
+
                                     </ul>
                                     <div class="socials-a">
                                         <ul class="list-inline">
@@ -194,3 +197,30 @@
 <br />
 <br />
 <br />
+
+<script>
+    window.onload = function () {
+        showMap();
+    };
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaHVuZ2dhY29uIiwiYSI6ImNscDNjdGs4YTB5MHIyanJ4ZjI4eXBvejkifQ.AQ3WF4QmQaoaE80A-2-OJQ';
+
+    function showMap() {
+        var address = document.getElementById('addressInput').value;
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaHVuZ2dhY29uIiwiYSI6ImNscDNjdGs4YTB5MHIyanJ4ZjI4eXBvejkifQ.AQ3WF4QmQaoaE80A-2-OJQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [0, 0],
+            zoom: 12
+        });
+
+        // Geocode the entered address
+        fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=' + mapboxgl.accessToken)
+            .then(response => response.json())
+            .then(data => {
+                var coordinates = data.features[0].center;
+                map.setCenter(coordinates);
+                new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+            });
+    }
+</script>

@@ -9,7 +9,7 @@ namespace WebQLNhaTro.Controllers
 {
     public class MotelsController : Controller
     {
-        NhaTroEntities1 db = new NhaTroEntities1();
+        NhaTroEntities db = new NhaTroEntities();
         // GET: Motels
         [HttpGet]
         public ActionResult Index(string keyword,int Danhmuc = 0,int KhuVuc=0,int giatu = 0)

@@ -387,7 +387,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NhaTroEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
@@ -427,7 +427,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities1">
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities">
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">

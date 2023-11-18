@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebQLNhaTro</RootNamespace>
     <AssemblyName>WebQLNhaTro</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -68,11 +69,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -117,6 +115,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -174,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\searchpriceController.cs" />
@@ -186,49 +186,49 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ADMIN.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\area.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryMotel.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\custom.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Host.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageMotel.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\motel.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\News.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModels.Context.cs">
+    <Compile Include="Models\NhaTroModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModels.Context.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModels.cs">
+    <Compile Include="Models\NhaTroModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhaTroModels.Designer.cs">
+    <Compile Include="Models\NhaTroModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NhaTroModels.edmx</DependentUpon>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Seach.cs" />
     <Compile Include="Models\searchprice.cs">
-      <DependentUpon>NhaTroModels.tt</DependentUpon>
+      <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WebRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2510,15 +2510,15 @@
     <Content Include="Image\Tro1.jpg" />
     <Content Include="Image\Tro2.jpg" />
     <Content Include="Image\Tro3.jpg" />
-    <Content Include="Models\NhaTroModels.Context.tt">
+    <Content Include="Models\NhaTroModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhaTroModels.edmx</DependentUpon>
-      <LastGenOutput>NhaTroModels.Context.cs</LastGenOutput>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NhaTroModels.tt">
+    <Content Include="Models\NhaTroModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhaTroModels.edmx</DependentUpon>
-      <LastGenOutput>NhaTroModels.cs</LastGenOutput>
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+      <LastGenOutput>NhaTroModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2634,13 +2634,6 @@
     <Content Include="Content\ckeditor\README.md" />
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
-    <EntityDeploy Include="Models\NhaTroModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NhaTroModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NhaTroModels.edmx.diagram">
-      <DependentUpon>NhaTroModels.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
@@ -2649,6 +2642,14 @@
     <Content Include="Areas\Admin\Views\searchprice\Add.cshtml" />
     <Content Include="Areas\Admin\Views\searchprice\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\searchprice\delete.cshtml" />
+    <EntityDeploy Include="Models\NhaTroModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NhaTroModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NhaTroModel.edmx.diagram">
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Manages\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

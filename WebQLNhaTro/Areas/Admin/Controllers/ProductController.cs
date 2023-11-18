@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     [Authorize(Roles = "2")]
     public class ProductController : Controller
     {
-        NhaTroEntities1 db = new NhaTroEntities1();
+        NhaTroEntities db = new NhaTroEntities();
         // GET: Admin/Product
         public ActionResult Index()
         {
@@ -62,7 +62,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
                     tro.Address = f["txtDiaChi"];
                     tro.CreateDate = DateTime.Now;
                     tro.ModifiledDate = DateTime.Now;
-                    tro.Status = "Duyệt";
+                    tro.Status = "Chưa duyệt";
                     tro.Description = f["sMoTa"];
                     tro.AreaID = int.Parse(f["KhuVuc"]);
                     tro.CategoryID = int.Parse(f["DanhMuc"]);
