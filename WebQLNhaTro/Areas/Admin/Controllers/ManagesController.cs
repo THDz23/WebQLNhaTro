@@ -7,7 +7,7 @@ using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = "2")]
     public class ManagesController : Controller
     {
         NhaTroEntities db = new NhaTroEntities();

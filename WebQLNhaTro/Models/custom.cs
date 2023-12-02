@@ -14,11 +14,23 @@ namespace WebQLNhaTro.Models
     
     public partial class custom
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public custom()
+        {
+            this.Contracts = new HashSet<Contract>();
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int CustomID { get; set; }
         public string fullName { get; set; }
         public string Account { get; set; }
         public string PassWord { get; set; }
         public string gender { get; set; }
         public string Email { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contracts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

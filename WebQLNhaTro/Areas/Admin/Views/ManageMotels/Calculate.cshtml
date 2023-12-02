@@ -1,0 +1,90 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.Contract>
+@{
+    ViewBag.Title = "Calculate";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-sm-12" bis_skin_checked="1">
+    <table id="table" class="table table-striped table-bordered dt-responsive nowrap no-footer dtr-inline dataTable" cellspacing="0" width="100%" role="grid" style="">
+        <thead>
+            <tr role="row">
+                <th class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1" style="width: 15%;"></th>
+                <th class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1" style="width: 15%;">Phòng</th>
+                <th class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1" style="width: 25%;">Khách thuê</th>
+                <th class="sorting_disabled" tabindex="0" aria-controls="table" rowspan="1" colspan="1" style="width: 15%;">Chỉ số sử dụng</th>
+                <th style="width: 15%;" class="sorting_disabled dt-body-right" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Sử Dụng: activate to sort column ascending">Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                var Tong = Decimal.Zero;
+                foreach (var r in Model)
+                {
+                    
+                    Tong = r.motel.Price;
+                    Tong += r.Wifi;
+                <tr role="row" class="odd">
+                    <td tabindex="0">Điện</td>
+                    <td>@r.MotelID</td>
+                    <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prelec" /></td>
+
+                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate1(this.value)"></td>
+                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="elec" readonly></td>
+                </tr>
+
+                <tr role="row" class="odd">
+                    <td tabindex="0">Nước</td>
+                    <td>@r.MotelID</td>
+                    <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prwater" /></td>
+
+                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate2(this.value)"></td>
+                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="water" readonly></td>
+                </tr>
+                <tr role="row" class="odd">
+                    <td tabindex="0">Tiền phòng</td>
+                    <td>@r.MotelID</td>
+                    <td>@r.custom.fullName</td>
+                    <td colspan="2"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@r.motel.Price"></td>
+                </tr>
+                <tr role="row" class="odd">
+                    
+                    <td tabindex="0">Tiền mạng</td>
+                    <td>@r.MotelID</td>
+                    <td>@r.custom.fullName</td>
+                    <td colspan="2"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@r.Wifi"></td>
+                </tr>
+
+
+                <tr>
+                    <th colspan="3" class="text-right">Tổng:</th>
+                    
+                    <th class="text-center" id="val"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@Tong"></th>
+                    <th>
+                        <button type="button" class="btn btn-info btn-xs" name="saveRow" title="Lưu" style="width:100%;height:100%"><i class="fa fa-save"></i> &nbsp Lưu</button>
+                    </th>
+                </tr>
+            }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function calculate1(value) {
+        var x;
+        var y = document.getElementById('prelec').value;
+        x = y * value;
+        document.getElementById('elec').value = x;
+    }
+    function calculate2(value) {
+        var x;
+        var y = document.getElementById('prwater').value;
+        x = y * value;
+        document.getElementById('water').value = x;
+    }
+
+    
+</script>
+

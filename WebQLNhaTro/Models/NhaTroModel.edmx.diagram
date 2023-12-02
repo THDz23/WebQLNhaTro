@@ -20,6 +20,13 @@
         <AssociationConnector Association="NhaTroModel.FK_motel_Host_KhoaChinh" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_ImageMotel_motel_NoiKhoa" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_NhaTro_TimTheoGia_FKTimGia" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NhaTroModel.Contract" Width="1.5" PointX="10" PointY="3.625" />
+        <EntityTypeShape EntityType="NhaTroModel.Order" Width="1.5" PointX="10" PointY="7.875" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_custom_FKK" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_motel_FKMT" />
+        <AssociationConnector Association="NhaTroModel.FK_Order_custom_FKK" />
+        <AssociationConnector Association="NhaTroModel.FK_Order_motel_FKMT" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_Host_FKHOST" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

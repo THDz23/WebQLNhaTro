@@ -4,16 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebQLNhaTro.Models;
-
+using PagedList;
+using PagedList.Mvc;
 namespace WebQLNhaTro.Controllers
 {
     public class MotelsController : Controller
     {
         NhaTroEntities db = new NhaTroEntities();
+        public ActionResult Index(int ? page)
+        {
+            int pageSize = 6;
+            int ipagenum = (page ?? 1);
+            var item = db.motels;
+            return View(item.ToPagedList(ipagenum, pageSize));
+        }
         // GET: Motels
         [HttpGet]
         public ActionResult Index(string keyword,int Danhmuc = 0,int KhuVuc=0,int giatu = 0)
         {
+           
+
             ViewBag.KhuVuc = new SelectList(db.areas.ToList(), "AreaID", "ProvinceName");
             ViewBag.GiaTu = new SelectList(db.searchprices.ToList(), "ID", "PriceFrom");
             ViewBag.Danhmuc = new SelectList (db.CategoryMotels.ToList(),"CategoryID","type");
@@ -88,7 +98,10 @@ namespace WebQLNhaTro.Controllers
                 return View(item);
             }
         }
-
+        // bang hop dong,duyet quan ly dang ky
+        // ung dung thanh toan online
+        // order chi tiet
+        // dua thông tin khách vào 
         public JsonResult GetByName(string keyword)
         {
             var allsearch = db.motels.Where(x => x.Title.Contains(keyword)).Select(x => new Seach { 

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.Contract>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <h3>Danh sách</h3>
+    <p style="margin-left: 40px"> Đã cho thuê  | Chưa thu phí </p>
+}
+
+<style>
+    .space {
+        margin-top:20px;
+        margin-right: 50px;
+    }
+
+    .card-header, .card-footer-a {
+        text-align: center;
+        margin: 4px;
+    }
+
+    table {
+        border-collapse: collapse;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<div class="row" style="margin-left:70px">
+    <div class="row space">
+        @foreach(var rs in Model)
+        {
+        <div class="col-md-4">
+            <div class="card-box-a card-shadow " style="background-color: #63B8FF; width: 200px; height: 250px;margin-right:140px">
+                <div class="card-overlay">
+                    <div class="card-overlay-a-content">
+                        <div class="card-header" style="align-content:center">
+                            <h5 style="color: #CCCCCC"><i class="fas fa-home"></i>Phòng @rs.MotelID</h5>
+
+                            <table>
+                                <tbody>
+                                    <tr style="text-align:center">
+                                        <td class="row">
+                                            <a href="" class="btn btn-warning">Sửa</a>
+                                            <a href="" class="btn btn-primary">Xem</a>
+                                            <a href="" class="btn btn-danger">Xóa</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="card-body-a" style="margin-left: 10px">
+                            <p style="color:green"><i class="fas fa-user"></i>  @rs.custom.fullName</p>
+                            <p style="color:red"><i class="fas fa-money-bill-wave"></i>  @rs.Priece</p>
+                            <p>@rs.Status</p>
+                        </div>
+
+                        <div class="card-footer-a">
+                            <table style="text-align:center">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/admin/ManageMotels/Calculate/@rs.ContractID" class="btn btn-primary">Tính tiền</a>
+                                            <a href="" class="btn btn-success">Gửi mail</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            }
+
+       
+    </div>
+</div>

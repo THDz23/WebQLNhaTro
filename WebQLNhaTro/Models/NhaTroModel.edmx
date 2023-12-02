@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMIN">
           <Key>
             <PropertyRef Name="IDAdmin" />
@@ -30,6 +30,22 @@
           <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateHide" Type="datetime" />
+          <Property Name="Expirationdate" Type="datetime" />
+          <Property Name="HostID" Type="int" />
+          <Property Name="MotelID" Type="int" />
+          <Property Name="CustomID" Type="int" />
+          <Property Name="Electric" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Water" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Priece" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Wifi" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="custom">
           <Key>
@@ -90,6 +106,17 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MotelID" Type="int" />
+          <Property Name="CustomID" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="searchprice">
           <Key>
             <PropertyRef Name="ID" />
@@ -98,6 +125,42 @@
           <Property Name="PriceFrom" Type="nvarchar(max)" />
           <Property Name="CreateDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK_Contract_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Host_FKHOST">
+          <End Role="Host" Type="Self.Host" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Host_ADMIN_KHOS">
           <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
           <End Role="Host" Type="Self.Host" Multiplicity="*" />
@@ -170,16 +233,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_custom_FKK">
+          <End Role="custom" Type="Self.custom" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_motel_FKMT">
+          <End Role="motel" Type="Self.motel" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NhaTroModelStoreContainer">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryMotel" EntityType="Self.CategoryMotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="custom" EntityType="Self.custom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Host" EntityType="Self.Host" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageMotel" EntityType="Self.ImageMotel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="motel" EntityType="Self.motel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="searchprice" EntityType="Self.searchprice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contract_custom_FKK" Association="Self.FK_Contract_custom_FKK">
+            <End Role="custom" EntitySet="custom" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Host_FKHOST" Association="Self.FK_Contract_Host_FKHOST">
+            <End Role="Host" EntitySet="Host" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_motel_FKMT" Association="Self.FK_Contract_motel_FKMT">
+            <End Role="motel" EntitySet="motel" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
           <AssociationSet Name="FK_Host_ADMIN_KHOS" Association="Self.FK_Host_ADMIN_KHOS">
             <End Role="ADMIN" EntitySet="ADMIN" />
             <End Role="Host" EntitySet="Host" />
@@ -204,9 +305,16 @@
             <End Role="searchprice" EntitySet="searchprice" />
             <End Role="motel" EntitySet="motel" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_custom_FKK" Association="Self.FK_Order_custom_FKK">
+            <End Role="custom" EntitySet="custom" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_motel_FKMT" Association="Self.FK_Order_motel_FKMT">
+            <End Role="motel" EntitySet="motel" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -249,6 +357,8 @@
           <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="NhaTroModel.FK_Contract_custom_FKK" FromRole="custom" ToRole="Contract" />
+          <NavigationProperty Name="Orders" Relationship="NhaTroModel.FK_Order_custom_FKK" FromRole="custom" ToRole="Order" />
         </EntityType>
         <EntityType Name="Host">
           <Key>
@@ -261,6 +371,7 @@
           <Property Name="IDADmin" Type="Int32" />
           <NavigationProperty Name="ADMIN" Relationship="Self.FK_Host_ADMIN_KHOS" FromRole="Host" ToRole="ADMIN" />
           <NavigationProperty Name="motels" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="Host" ToRole="motel" />
+          <NavigationProperty Name="Contracts" Relationship="NhaTroModel.FK_Contract_Host_FKHOST" FromRole="Host" ToRole="Contract" />
         </EntityType>
         <EntityType Name="ImageMotel">
           <Key>
@@ -294,6 +405,8 @@
           <NavigationProperty Name="Host" Relationship="Self.FK_motel_Host_KhoaChinh" FromRole="motel" ToRole="Host" />
           <NavigationProperty Name="ImageMotels" Relationship="Self.FK_ImageMotel_motel_NoiKhoa" FromRole="motel" ToRole="ImageMotel" />
           <NavigationProperty Name="searchprice" Relationship="Self.FK_NhaTro_TimTheoGia_FKTimGia" FromRole="motel" ToRole="searchprice" />
+          <NavigationProperty Name="Contracts" Relationship="NhaTroModel.FK_Contract_motel_FKMT" FromRole="motel" ToRole="Contract" />
+          <NavigationProperty Name="Orders" Relationship="NhaTroModel.FK_Order_motel_FKMT" FromRole="motel" ToRole="Order" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -421,7 +534,121 @@
             <End Role="searchprice" EntitySet="searchprices" />
             <End Role="motel" EntitySet="motels" />
           </AssociationSet>
+          <EntitySet Name="Contracts" EntityType="NhaTroModel.Contract" />
+          <EntitySet Name="Orders" EntityType="NhaTroModel.Order" />
+          <AssociationSet Name="FK_Contract_custom_FKK" Association="NhaTroModel.FK_Contract_custom_FKK">
+            <End Role="custom" EntitySet="customs" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_motel_FKMT" Association="NhaTroModel.FK_Contract_motel_FKMT">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_custom_FKK" Association="NhaTroModel.FK_Order_custom_FKK">
+            <End Role="custom" EntitySet="customs" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_motel_FKMT" Association="NhaTroModel.FK_Order_motel_FKMT">
+            <End Role="motel" EntitySet="motels" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Host_FKHOST" Association="NhaTroModel.FK_Contract_Host_FKHOST">
+            <End Role="Host" EntitySet="Hosts" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateHide" Type="DateTime" Precision="3" />
+          <Property Name="Expirationdate" Type="DateTime" Precision="3" />
+          <Property Name="MotelID" Type="Int32" />
+          <Property Name="CustomID" Type="Int32" />
+          <Property Name="Electric" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Water" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Priece" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Wifi" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="custom" Relationship="NhaTroModel.FK_Contract_custom_FKK" FromRole="Contract" ToRole="custom" />
+          <NavigationProperty Name="motel" Relationship="NhaTroModel.FK_Contract_motel_FKMT" FromRole="Contract" ToRole="motel" />
+          <Property Name="HostID" Type="Int32" />
+          <NavigationProperty Name="Host" Relationship="NhaTroModel.FK_Contract_Host_FKHOST" FromRole="Contract" ToRole="Host" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MotelID" Type="Int32" />
+          <Property Name="CustomID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="custom" Relationship="NhaTroModel.FK_Order_custom_FKK" FromRole="Order" ToRole="custom" />
+          <NavigationProperty Name="motel" Relationship="NhaTroModel.FK_Order_motel_FKMT" FromRole="Order" ToRole="motel" />
+        </EntityType>
+        <Association Name="FK_Contract_custom_FKK">
+          <End Type="NhaTroModel.custom" Role="custom" Multiplicity="0..1" />
+          <End Type="NhaTroModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_motel_FKMT">
+          <End Type="NhaTroModel.motel" Role="motel" Multiplicity="0..1" />
+          <End Type="NhaTroModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_custom_FKK">
+          <End Type="NhaTroModel.custom" Role="custom" Multiplicity="0..1" />
+          <End Type="NhaTroModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="custom">
+              <PropertyRef Name="CustomID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_motel_FKMT">
+          <End Type="NhaTroModel.motel" Role="motel" Multiplicity="0..1" />
+          <End Type="NhaTroModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motel">
+              <PropertyRef Name="MotelID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="MotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Host_FKHOST">
+          <End Type="NhaTroModel.Host" Role="Host" Multiplicity="0..1" />
+          <End Type="NhaTroModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Host">
+              <PropertyRef Name="HostID" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="HostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -527,6 +754,35 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PriceFrom" ColumnName="PriceFrom" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="NhaTroModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HostID" ColumnName="HostID" />
+                <ScalarProperty Name="Wifi" ColumnName="Wifi" />
+                <ScalarProperty Name="Priece" ColumnName="Priece" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Electric" ColumnName="Electric" />
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="Expirationdate" ColumnName="Expirationdate" />
+                <ScalarProperty Name="DateHide" ColumnName="DateHide" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="NhaTroModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CustomID" ColumnName="CustomID" />
+                <ScalarProperty Name="MotelID" ColumnName="MotelID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

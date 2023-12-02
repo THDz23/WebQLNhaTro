@@ -18,6 +18,8 @@ namespace WebQLNhaTro.Models
         public motel()
         {
             this.ImageMotels = new HashSet<ImageMotel>();
+            this.Contracts = new HashSet<Contract>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int MotelID { get; set; }
@@ -41,5 +43,9 @@ namespace WebQLNhaTro.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImageMotel> ImageMotels { get; set; }
         public virtual searchprice searchprice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contracts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

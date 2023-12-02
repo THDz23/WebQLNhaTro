@@ -18,6 +18,7 @@ namespace WebQLNhaTro.Models
         public Host()
         {
             this.motels = new HashSet<motel>();
+            this.Contracts = new HashSet<Contract>();
         }
     
         public int HostID { get; set; }
@@ -29,5 +30,7 @@ namespace WebQLNhaTro.Models
         public virtual ADMIN ADMIN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<motel> motels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contracts { get; set; }
     }
 }

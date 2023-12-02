@@ -34,5 +34,7 @@ namespace WebQLNhaTro.Models
         public virtual DbSet<motel> motels { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<searchprice> searchprices { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }
