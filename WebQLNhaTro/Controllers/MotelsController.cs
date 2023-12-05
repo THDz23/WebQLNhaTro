@@ -10,6 +10,7 @@ namespace WebQLNhaTro.Controllers
 {
     public class MotelsController : Controller
     {
+
         NhaTroEntities2 db = new NhaTroEntities2();
         
         // GET: Motels

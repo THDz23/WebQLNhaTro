@@ -1,0 +1,262 @@
+﻿@model WebQLNhaTro.Models.motel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Thêm CSS tại đây để điều chỉnh giao diện */
+    .property-single {
+        padding: 50px 0;
+    }
+
+    #property-single-carousel img {
+        width: 100%;
+        height: auto;
+    }
+
+    .property-price {
+        margin-bottom: 20px;
+    }
+
+    .property-summary {
+        margin-bottom: 30px;
+    }
+
+    .summary-list {
+        list-style: none;
+        padding: 0;
+    }
+
+        .summary-list li {
+            margin-bottom: 10px;
+        }
+
+    .property-description {
+        text-align: justify;
+    }
+
+    .tab-content {
+        margin-top: 30px;
+    }
+
+    /* Thêm CSS cho bản đồ */
+    #map {
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+    }
+</style>
+<!-- Left navbar links -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin/home" class="nav-link">Trang chủ</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin/Location" class="nav-link">bài đăng</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin/Location" class="nav-link">Xem bài đăng</a>
+    </li>
+</ul>
+<section class="property-single nav-arrow-b">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+                @if (Model.ImageMotels != null && Model.ImageMotels.Any())
+                {
+                    foreach (var anh in Model.ImageMotels)
+                    {
+                        <div class="carousel-item-b" style="background-size: cover">
+                            <img src="~/Image/@anh.Image" alt="" height="500">
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-price d-flex justify-content-center foo">
+                        <div class="card-header-c d-flex">
+                            <div class="card-title-c align-self-center">
+                                <h5 class="title-c">@Model.Price VND</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-summary">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d section-t4">
+                                    <h3 class="title-d">Thông tin chung</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-list">
+                            <ul class="list">
+                                <li class="d-flex justify-content-between">
+                                    <strong>Mã trọ:</strong>
+                                    <span>@Model.MotelID</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Khu vực:</strong>
+                                    <span>@Model.area.ProvinceName</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Địa chỉ:</strong>
+                                    <span>@Model.Address</span>
+                                </li>
+
+                                <li class="d-flex justify-content-between">
+                                    <strong>Diện tích:</strong>
+                                    <span>
+                                        @Model.Acreage m
+                                        <sup>2</sup>
+                                    </span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Danh mục:</strong>
+                                    <span>@Model.CategoryMotel.Type</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Ngày đăng: </strong>
+                                    <span>@Model.CreateDate</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7 section-md-t3">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box-d">
+                                <h3 class="title-d">Thông tin mô tả</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-description">
+                        @Html.Raw(Model.Description)
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+                <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map" aria-selected="false">Bản đồ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-plans-tab" data-toggle="pill" href="#pills-plans" role="tab" aria-controls="pills-plans" aria-selected="false">Liên hệ</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-map-tab">
+                        <input type='text' id='addressInput' placeholder='Enter an address' value="@Model.Address" hidden />
+                        <div id='map' style='width: 100%; height: 400px;'></div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans-tab">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="property-agent">
+                                    <h4 class="title-agent" style="text-align:center">@Model.Host.OwnerName</h4>
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Điện thoại:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Phone</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Zalo:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Phone</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Email:</strong>
+                                            <span class="color-text-a" style="color: grey;">@Model.Host.Email</span>
+                                        </li>
+
+                                    </ul>
+                                    <div class="socials-a">
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#">
+                                                    <i class="fa fa-dribbble" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<br />
+<br />
+<br />
+
+<!-- ... Mã HTML khác ... -->
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        showMap();
+    });
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaHVuZ2dhY29uIiwiYSI6ImNscDNjdGs4YTB5MHIyanJ4ZjI4eXBvejkifQ.AQ3WF4QmQaoaE80A-2-OJQ';
+
+    function showMap() {
+        var address = document.getElementById('addressInput').value;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [0, 0],
+            zoom: 12
+        });
+
+        // Geocode the entered address
+        fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=' + mapboxgl.accessToken)
+            .then(response => response.json())
+            .then(data => {
+                var coordinates = data.features[0].center;
+                map.setCenter(coordinates);
+                new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+            });
+    }
+</script>
+
+<!-- ... Mã HTML khác ... -->

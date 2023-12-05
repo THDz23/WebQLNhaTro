@@ -353,6 +353,7 @@
             <PropertyRef Name="ContractID" />
           </Key>
           <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+
           <Property Name="Datefounded" Type="DateTime" Precision="3" />
           <Property Name="Expirationdate" Type="DateTime" Precision="3" />
           <Property Name="HostID" Type="Int32" />
@@ -593,7 +594,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <EntityContainer Name="NhaTroEntities2" annotation:LazyLoadingEnabled="true">
+
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
@@ -655,6 +658,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+
         <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities2">
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
@@ -689,6 +693,7 @@
             <EntityTypeMapping TypeName="NhaTroModel.Contract">
               <MappingFragment StoreEntitySet="Contract">
                 <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+
                 <ScalarProperty Name="Datefounded" ColumnName="Datefounded" />
                 <ScalarProperty Name="Expirationdate" ColumnName="Expirationdate" />
                 <ScalarProperty Name="HostID" ColumnName="HostID" />

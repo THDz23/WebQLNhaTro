@@ -23,6 +23,7 @@
             {
                 if (Model != null && Model.Any())
                 {
+
                     var Tong = Decimal.Zero;
                     foreach (var r in Model)
                     {
@@ -31,6 +32,7 @@
                             <td tabindex="0">Điện</td>
                             <td>@r.MotelID</td>
                             <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prelec" /></td>
+
 
                             <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate1(this.value)"></td>
                             <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="elec" readonly></td>

@@ -11,6 +11,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     public class LocationController : Controller
     {
 
+
         NhaTroEntities2 db = new NhaTroEntities2();
         // GET: Admin/Location
        
