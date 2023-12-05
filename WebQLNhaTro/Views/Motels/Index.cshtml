@@ -73,90 +73,138 @@
         </div>
     </div>
 </div>
-<section class="property-grid grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="grid-option">
 
-                    @using (Html.BeginForm())
-                    {
-                        <select class="custom-select" onchange="window.location.href=this.value">
-                            <option selected>Tất cả</option>
-                            <option value="DateNew">Mới nhất</option>
-                            <option value="AscendingPrice">Giá thấp nhất</option>
-                            <option value="DecreasePrice">Giá cao nhất</option>
-                        </select>
-                    }
+    <section class="property-grid grid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="grid-option">
+
+                        @using (Html.BeginForm())
+                        {
+                            <select class="custom-select" onchange="window.location.href=this.value">
+                                <option selected>Tất cả</option>
+                                <option value="DateNew">Mới nhất</option>
+                                <option value="AscendingPrice">Giá thấp nhất</option>
+                                <option value="DecreasePrice">Giá cao nhất</option>
+                            </select>
+                        }
+
+                    </div>
                 </div>
-            </div>
-            @if (Model != null && Model.Any())
-            {
-                foreach (var tro in Model)
-                {
-                    <div class="col-md-6">
-                        <div class="card-box-a card-shadow " style="width:525px;height:378px">
-                            <div class="img-box-a">
-                                <img src="~/Image/@tro.Image" alt="" class="img-a img-fluid" style="width:100%;height:100%">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="card-overlay-a-content">
-                                    <div class="card-header-a">
-                                        <h2 class="card-title-a">
-                                            <a href="#">
-                                                @tro.Title
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div class="card-body-a">
-                                        <div class="price-box d-flex">
-                                            <span class="price-a">@tro.Price VNĐ</span>
-                                        </div>
-                                        <div>
-                                            <span style="color: red">@tro.Address</span>
-                                        </div>
-                                        <a href="/motels/detail/@tro.MotelID" class="link-a">
-                                            Xem chi tiết
-                                            <span class="ion-ios-arrow-forward"></span>
-                                        </a>
-                                    </div>
-                                    <div class="card-footer-a">
-                                        <ul class="card-info d-flex justify-content-around">
-                                            <li>
-                                                <h4 class="card-info-title">Area</h4>
-                                                <span>
-                                                    @tro.Acreage m
-                                                    <sup>2</sup>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Chủ trọ</h4>
-                                                <span>@tro.Host.OwnerName</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Điện thoại</h4>
-                                                <span>@tro.Host.Phone</span>
-                                            </li>
+                <div class="col-md-6">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var tro in Model)
+                        {
+                            <button class="btn-favorite" data-motel-id="@tro.MotelID" data-is-favorite="@tro.IsFavorite ">
+                                @if (tro.IsFavorite)
+                                {
+                                    <i class="fas fa-heart"></i> <!-- Sử dụng lớp biểu tượng hình trái tim phù hợp -->
+                                }
+                                else
+                                {
+                                    <i class="far fa-heart"></i>
+                                }
+                            </button>
 
-                                        </ul>
+                            <div class="card-footer-a">
+                                <div class="col-md-6">
+                                    <div class="card-box-a card-shadow " style="width:525px;height:378px">
+                                        <div class="img-box-a">
+                                            <img src="~/Image/@tro.Image" alt="" class="img-a img-fluid" style="width:100%;height:100%">
+                                        </div>
+                                        <div class="card-overlay">
+                                            <div class="card-overlay-a-content">
+                                                <div class="card-header-a">
+                                                    <h2 class="card-title-a">
+                                                        <a href="#">
+                                                            @tro.Title
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div class="card-body-a">
+                                                    <div class="price-box d-flex">
+                                                        <span class="price-a">@tro.Price VNĐ</span>
+                                                    </div>
+                                                    <div>
+                                                        <span style="color: red">@tro.Address</span>
+                                                    </div>
+                                                    <a href="/motels/detail/@tro.MotelID" class="link-a">
+                                                        Xem chi tiết
+                                                        <span class="ion-ios-arrow-forward"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="card-footer-a">
+                                                    <ul class="card-info d-flex justify-content-around">
+                                                        <li>
+                                                            <h4 class="card-info-title">Area</h4>
+                                                            <span>
+                                                                @tro.Acreage m
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title">Chủ trọ</h4>
+                                                            <span>@tro.Host.OwnerName</span>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title">Điện thoại</h4>
+                                                            <span>@tro.Host.Phone</span>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                }
-            }
 
-        </div>
-        <div class="row">
-           
-        </div>
-    </div>
-</section>
+
+                        }
+
+                    }
+                </div>
+                </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+        </section>
+<script>
+    $(document).ready(function () {
+        $(".btn-favorite").click(function () {
+            var motelId = $(this).data("motel-id");
+            var isFavorite = !$(this).data("is-favorite");
+
+            $.ajax({
+                url: "@Url.Action("ToggleFavorite", "Motels")",
+                type: "POST",
+                data: { motelId: motelId, isFavorite: isFavorite },
+                success: function (data) {
+                    // Cập nhật giao diện người dùng dựa trên phản hồi từ máy chủ
+                    if (data.success) {
+                        // Chuyển đổi biểu tượng hình trái tim
+                        var heartIcon = $(this).find("i");
+                        if (isFavorite) {
+                            heartIcon.removeClass("far").addClass("fas");
+                        } else {
+                            heartIcon.removeClass("fas").addClass("far");
+                        }
+                    } else {
+                        // Xử lý lỗi
+                        console.error("Lỗi khi chuyển đổi trạng thái yêu thích");
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 
 <script>
-    
+
         $("#keyword").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -172,7 +220,7 @@
                     }
                 });
             },
-            
+
         });
-    
+
 </script>

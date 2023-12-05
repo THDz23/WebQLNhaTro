@@ -41,7 +41,7 @@
 </section>
 @{
     ADMIN ad = (ADMIN)Session["Account"];
-    var db = new WebQLNhaTro.Models.NhaTroEntities();
+    var db = new WebQLNhaTro.Models.NhaTroEntities3();
     var IDad = db.ADMINs.SingleOrDefault(a => a.Account == ad.Account);
     var owner = db.Hosts.SingleOrDefault(x => x.IDADmin == IDad.IDAdmin);
 }

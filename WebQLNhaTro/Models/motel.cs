@@ -17,8 +17,8 @@ namespace WebQLNhaTro.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public motel()
         {
-            this.ImageMotels = new HashSet<ImageMotel>();
             this.Contracts = new HashSet<Contract>();
+            this.ImageMotels = new HashSet<ImageMotel>();
             this.Orders = new HashSet<Order>();
         }
     
@@ -39,13 +39,14 @@ namespace WebQLNhaTro.Models
     
         public virtual area area { get; set; }
         public virtual CategoryMotel CategoryMotel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contracts { get; set; }
         public virtual Host Host { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImageMotel> ImageMotels { get; set; }
         public virtual searchprice searchprice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contract> Contracts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        public bool IsFavorite { get; internal set; }
     }
 }

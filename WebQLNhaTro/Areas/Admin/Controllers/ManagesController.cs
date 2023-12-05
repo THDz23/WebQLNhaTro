@@ -10,7 +10,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     [Authorize(Roles = "2")]
     public class ManagesController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        NhaTroEntities3 db = new NhaTroEntities3();
         // GET: Admin/Manages
         public ActionResult Index()
         {

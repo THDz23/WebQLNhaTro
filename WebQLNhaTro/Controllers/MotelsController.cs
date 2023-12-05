@@ -10,14 +10,41 @@ namespace WebQLNhaTro.Controllers
 {
     public class MotelsController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        public bool IsFavorite { get; set; }
+        NhaTroEntities3 db = new NhaTroEntities3();
         public ActionResult Index(int ? page)
         {
+
             int pageSize = 6;
             int ipagenum = (page ?? 1);
             var item = db.motels;
             return View(item.ToPagedList(ipagenum, pageSize));
         }
+        [HttpPost]
+        public ActionResult ToggleFavorite(int motelId, bool isFavorite)
+        {
+            try
+            {
+                var motel = db.motels.Find(motelId);
+                if (motel != null)
+                {
+                    motel.IsFavorite = isFavorite;
+                    db.SaveChanges();
+
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Không tìm thấy phòng trọ" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+
         // GET: Motels
         [HttpGet]
         public ActionResult Index(string keyword,int Danhmuc = 0,int KhuVuc=0,int giatu = 0)
@@ -131,5 +158,6 @@ namespace WebQLNhaTro.Controllers
             var item = db.motels.OrderBy(x => x.CreateDate).ToList();
             return View(item);
         }
+       
     }
 }

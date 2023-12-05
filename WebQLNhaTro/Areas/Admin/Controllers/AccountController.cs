@@ -13,7 +13,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
    
     public class AccountController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        NhaTroEntities3 db = new NhaTroEntities3();
         // GET: Admin/User
         public ActionResult Index()
         {

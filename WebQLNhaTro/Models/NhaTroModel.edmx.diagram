@@ -4,29 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2a888f596dee4f1297eb3f258de32818" Name="Diagram1">
-        <EntityTypeShape EntityType="NhaTroModel.ADMIN" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.area" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.CategoryMotel" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.custom" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.Host" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.ImageMotel" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.motel" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.News" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NhaTroModel.searchprice" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+      <Diagram DiagramId="8d13225417334f658cea5f97fa1126cf" Name="Diagram1">
+        <EntityTypeShape EntityType="NhaTroModel.ADMIN" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.area" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.CategoryMotel" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.Contract" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.custom" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.Host" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.ImageMotel" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.motel" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.News" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.Order" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="NhaTroModel.searchprice" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
         <AssociationConnector Association="NhaTroModel.FK_Host_ADMIN_KHOS" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_NhaTro_KhuVuc_FKKhuVuc" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_NhaTro_DanhMucTro_FKMADM" ManuallyRouted="false" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_custom_FKK" ManuallyRouted="false" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_Host_FKHOST" ManuallyRouted="false" />
+        <AssociationConnector Association="NhaTroModel.FK_Contract_motel_FKMT" ManuallyRouted="false" />
+        <AssociationConnector Association="NhaTroModel.FK_Order_custom_FKK" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_motel_Host_KhoaChinh" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_ImageMotel_motel_NoiKhoa" ManuallyRouted="false" />
         <AssociationConnector Association="NhaTroModel.FK_NhaTro_TimTheoGia_FKTimGia" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="NhaTroModel.Contract" Width="1.5" PointX="10" PointY="3.625" />
-        <EntityTypeShape EntityType="NhaTroModel.Order" Width="1.5" PointX="10" PointY="7.875" />
-        <AssociationConnector Association="NhaTroModel.FK_Contract_custom_FKK" />
-        <AssociationConnector Association="NhaTroModel.FK_Contract_motel_FKMT" />
-        <AssociationConnector Association="NhaTroModel.FK_Order_custom_FKK" />
-        <AssociationConnector Association="NhaTroModel.FK_Order_motel_FKMT" />
-        <AssociationConnector Association="NhaTroModel.FK_Contract_Host_FKHOST" />
+        <AssociationConnector Association="NhaTroModel.FK_Order_motel_FKMT" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
