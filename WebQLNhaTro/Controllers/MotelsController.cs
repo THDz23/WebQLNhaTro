@@ -10,16 +10,10 @@ namespace WebQLNhaTro.Controllers
 {
     public class MotelsController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
-        public ActionResult Index(int ? page)
-        {
-            int pageSize = 6;
-            int ipagenum = (page ?? 1);
-            var item = db.motels;
-            return View(item.ToPagedList(ipagenum, pageSize));
-        }
+        NhaTroEntities2 db = new NhaTroEntities2();
+        
         // GET: Motels
-        [HttpGet]
+        
         public ActionResult Index(string keyword,int Danhmuc = 0,int KhuVuc=0,int giatu = 0)
         {
            
@@ -116,20 +110,6 @@ namespace WebQLNhaTro.Controllers
             return View(item);
         }
         
-        public ActionResult AscendingPrice()
-        {
-            var item = db.motels.OrderBy(x => x.Price).ToList();
-            return View(item);
-        }
-        public ActionResult DecreasePrice()
-        {
-            var item = db.motels.OrderByDescending(x => x.Price).ToList();
-            return View(item);
-        }
-        public ActionResult DateNew()
-        {
-            var item = db.motels.OrderBy(x => x.CreateDate).ToList();
-            return View(item);
-        }
+       
     }
 }

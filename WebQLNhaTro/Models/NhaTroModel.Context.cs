@@ -13,10 +13,10 @@ namespace WebQLNhaTro.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NhaTroEntities : DbContext
+    public partial class NhaTroEntities2 : DbContext
     {
-        public NhaTroEntities()
-            : base("name=NhaTroEntities")
+        public NhaTroEntities2()
+            : base("name=NhaTroEntities2")
         {
         }
     
@@ -28,13 +28,13 @@ namespace WebQLNhaTro.Models
         public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<area> areas { get; set; }
         public virtual DbSet<CategoryMotel> CategoryMotels { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<custom> customs { get; set; }
         public virtual DbSet<Host> Hosts { get; set; }
         public virtual DbSet<ImageMotel> ImageMotels { get; set; }
         public virtual DbSet<motel> motels { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<searchprice> searchprices { get; set; }
-        public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<searchprice> searchprices { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     [Authorize(Roles = "2")]
     public class ManageMotelsController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        NhaTroEntities2 db = new NhaTroEntities2();
         // GET: Admin/ManageMotels
         public ActionResult Index()
         {
@@ -26,6 +26,17 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
         {
             var item = db.Contracts.Where(x => x.ContractID == id);
             return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(Contract c,FormCollection f) 
+        {
+            if (ModelState.IsValid)
+            {
+                c.Priece = Decimal.Parse(f["sum"]);
+
+            }
+            return View();
         }
     }
 }

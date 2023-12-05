@@ -15,19 +15,19 @@ namespace WebQLNhaTro.Models
     public partial class Contract
     {
         public int ContractID { get; set; }
-        public Nullable<System.DateTime> DateHide { get; set; }
+        public Nullable<System.DateTime> Datefounded { get; set; }
         public Nullable<System.DateTime> Expirationdate { get; set; }
+        public Nullable<int> HostID { get; set; }
         public Nullable<int> MotelID { get; set; }
         public Nullable<int> CustomID { get; set; }
         public Nullable<decimal> Electric { get; set; }
         public Nullable<decimal> Water { get; set; }
         public Nullable<decimal> Priece { get; set; }
         public Nullable<decimal> Wifi { get; set; }
-        public Nullable<int> HostID { get; set; }
         public string Status { get; set; }
     
         public virtual custom custom { get; set; }
-        public virtual motel motel { get; set; }
         public virtual Host Host { get; set; }
+        public virtual motel motel { get; set; }
     }
 }

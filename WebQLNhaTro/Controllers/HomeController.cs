@@ -9,7 +9,7 @@ namespace WebQLNhaTro.Controllers
 {
     public class HomeController : Controller
     {
-        NhaTroEntities db = new NhaTroEntities();
+        NhaTroEntities2 db = new NhaTroEntities2();
         public ActionResult Index()
         {
             var item = db.motels.Where(x=>x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).Take(6).ToList();
