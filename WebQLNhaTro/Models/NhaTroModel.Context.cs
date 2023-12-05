@@ -13,10 +13,11 @@ namespace WebQLNhaTro.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NhaTroEntities3 : DbContext
+
+    public partial class NhaTroEntities2 : DbContext
     {
-        public NhaTroEntities3()
-            : base("name=NhaTroEntities3")
+        public NhaTroEntities2()
+            : base("name=NhaTroEntities2")
         {
         }
     

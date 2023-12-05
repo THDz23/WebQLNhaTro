@@ -36,7 +36,7 @@
             <PropertyRef Name="ContractID" />
           </Key>
           <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateHide" Type="datetime" />
+          <Property Name="Datefounded" Type="datetime" />
           <Property Name="Expirationdate" Type="datetime" />
           <Property Name="HostID" Type="int" />
           <Property Name="MotelID" Type="int" />
@@ -53,9 +53,9 @@
           </Key>
           <Property Name="CustomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fullName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Account" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Account" Type="nvarchar(max)" />
           <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="gender" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="10" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Host">
@@ -353,7 +353,8 @@
             <PropertyRef Name="ContractID" />
           </Key>
           <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateHide" Type="DateTime" Precision="3" />
+
+          <Property Name="Datefounded" Type="DateTime" Precision="3" />
           <Property Name="Expirationdate" Type="DateTime" Precision="3" />
           <Property Name="HostID" Type="Int32" />
           <Property Name="MotelID" Type="Int32" />
@@ -373,9 +374,9 @@
           </Key>
           <Property Name="CustomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_custom_FKK" FromRole="custom" ToRole="Contract" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_custom_FKK" FromRole="custom" ToRole="Order" />
@@ -593,7 +594,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NhaTroEntities3" annotation:LazyLoadingEnabled="true">
+
+        <EntityContainer Name="NhaTroEntities2" annotation:LazyLoadingEnabled="true">
+
           <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="CategoryMotels" EntityType="Self.CategoryMotel" />
@@ -655,7 +658,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities3">
+
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities2">
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="NhaTroModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
@@ -689,7 +693,8 @@
             <EntityTypeMapping TypeName="NhaTroModel.Contract">
               <MappingFragment StoreEntitySet="Contract">
                 <ScalarProperty Name="ContractID" ColumnName="ContractID" />
-                <ScalarProperty Name="DateHide" ColumnName="DateHide" />
+
+                <ScalarProperty Name="Datefounded" ColumnName="Datefounded" />
                 <ScalarProperty Name="Expirationdate" ColumnName="Expirationdate" />
                 <ScalarProperty Name="HostID" ColumnName="HostID" />
                 <ScalarProperty Name="MotelID" ColumnName="MotelID" />

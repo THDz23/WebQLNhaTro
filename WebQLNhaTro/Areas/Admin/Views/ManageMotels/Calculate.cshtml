@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Calculate";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+
 }
 
 
@@ -17,55 +19,67 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Any())
+            @using (Html.BeginForm("Update", "ManageMotels",FormMethod.Post))
             {
-                var Tong = Decimal.Zero;
-                foreach (var r in Model)
+                if (Model != null && Model.Any())
                 {
-                    
-                    Tong = r.motel.Price;
-                  //  Tong += r.Wifi;
-                <tr role="row" class="odd">
-                    <td tabindex="0">Điện</td>
-                    <td>@r.MotelID</td>
-                    <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prelec" /></td>
 
-                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate1(this.value)"></td>
-                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="elec" readonly></td>
-                </tr>
-
-                <tr role="row" class="odd">
-                    <td tabindex="0">Nước</td>
-                    <td>@r.MotelID</td>
-                    <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prwater" /></td>
-
-                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate2(this.value)"></td>
-                    <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="water" readonly></td>
-                </tr>
-                <tr role="row" class="odd">
-                    <td tabindex="0">Tiền phòng</td>
-                    <td>@r.MotelID</td>
-                    <td>@r.custom.fullName</td>
-                    <td colspan="2"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@r.motel.Price"></td>
-                </tr>
-                <tr role="row" class="odd">
-                    
-                    <td tabindex="0">Tiền mạng</td>
-                    <td>@r.MotelID</td>
-                    <td>@r.custom.fullName</td>
-                    <td colspan="2"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@r.Wifi"></td>
-                </tr>
+                    var Tong = Decimal.Zero;
+                    foreach (var r in Model)
+                    {
+                        Tong = r.motel.Price + (Decimal)r.Wifi;
+                        <tr>
+                            <td tabindex="0">Điện</td>
+                            <td>@r.MotelID</td>
+                            <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prelec" /></td>
 
 
-                <tr>
-                    <th colspan="3" class="text-right">Tổng:</th>
-                    
-                    <th class="text-center" id="val"><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="@Tong"></th>
-                    <th>
-                        <button type="button" class="btn btn-info btn-xs" name="saveRow" title="Lưu" style="width:100%;height:100%"><i class="fa fa-save"></i> &nbsp Lưu</button>
-                    </th>
-                </tr>
-            }
+                            <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate1(this.value)"></td>
+                            <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="elec" readonly></td>
+                        </tr>
+
+                        <tr>
+                            <td tabindex="0">Nước</td>
+                            <td>@r.MotelID</td>
+                            <td>@r.custom.fullName <input hidden type="text" value="@r.Electric" id="prwater" /></td>
+
+                            <td><input type="text" class="form-control" style="width: 100%; text-align: center;" name="oldValue" value="0" onkeyup="calculate2(this.value)"></td>
+                            <td><input type="text" class="form-control value" style="width: 100%; text-align: center;" name="newValue" value="0" tabindex="0" id="water" readonly></td>
+                        </tr>
+                        <tr>
+                            <td tabindex="0">Tiền phòng</td>
+                            <td>@r.MotelID</td>
+                            <td>@r.custom.fullName</td>
+                            <td colspan="2"><input type="text" class="form-control " style="width: 100%; text-align: center;" name="oldValue" value="@r.motel.Price"></td>
+                        </tr>
+                        <tr>
+                            
+                            <td tabindex="0">Tiền mạng</td>
+                            <td>@r.MotelID</td>
+                            <td>@r.custom.fullName</td>
+                            <td colspan="2"><input type="text" class="form-control " style="width: 100%; text-align: center;" name="oldValue" value="@r.Wifi"></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2" align="center">
+                                <button type="button" class="btn btn-success" onclick="sum()"> = </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="3" class="text-right">
+                                Tổng:
+                                <input type="text" class="form-control value" style="width: 100%; text-align: center;" name="oldValue" value="@Tong" id="sumpr" hidden>
+                            </th>
+
+                            <th class="text-center" id="val" name="sum"></th>
+                            <th>
+                                <button type="button" class="btn btn-info btn-xs" name="saveRow" title="Lưu" style="width:100%;height:100%"><i class="fa fa-save"></i> &nbsp Lưu</button>
+                            </th>
+                        </tr>
+                    }
+                }
             }
         </tbody>
     </table>
@@ -85,6 +99,16 @@
         document.getElementById('water').value = x;
     }
 
-    
+    function sum() {
+        var sum = 0;
+        var x = document.getElementById('elec').value;
+        x = parseInt(x);
+        var y = document.getElementById('water').value;
+        y = parseInt(y);
+        var s = document.getElementById('sumpr').value;
+        s = parseInt(s);
+        sum = x + y + s;
+        document.getElementById('val').innerHTML = sum;
+    }
 </script>
 
