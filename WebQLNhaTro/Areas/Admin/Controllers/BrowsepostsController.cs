@@ -7,9 +7,10 @@ using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "1")]
     public class BrowsepostsController : Controller
     {
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities2 db = new NhaTroEntities2();
         // GET: Admin/Browseposts
         public ActionResult Index()
         {
@@ -32,7 +33,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
 
             if (motel != null)
             {
-                motel.Status = "Đã duyệt";
+                motel.Status = "Duyệt";
                 db.SaveChanges();
             }
 

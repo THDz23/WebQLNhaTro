@@ -230,7 +230,6 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageMotelsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ManagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\searchpriceController.cs" />
@@ -257,6 +256,7 @@
     <Compile Include="Models\custom.cs">
       <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Host.cs">
       <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
@@ -2547,6 +2547,7 @@
     <Content Include="Content\clientss\lib\scrollreveal\scrollreveal.js" />
     <Content Include="Content\clientss\lib\scrollreveal\scrollreveal.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\templates\Mail.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2706,7 +2707,6 @@
     <Content Include="Areas\Admin\Views\searchprice\Add.cshtml" />
     <Content Include="Areas\Admin\Views\searchprice\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\searchprice\delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Manages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageMotels\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageMotels\Calculate.cshtml" />
     <EntityDeploy Include="Models\NhaTroModel.edmx">
@@ -2716,7 +2716,9 @@
     <Content Include="Models\NhaTroModel.edmx.diagram">
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
     </Content>
-
+    <Content Include="Areas\Admin\Views\Browseposts\Browes.cshtml" />
+    <Content Include="Areas\Admin\Views\Browseposts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Browseposts\show.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2764,13 +2766,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Motels\Detail.cshtml" />
     <Content Include="Views\Motels\Index.cshtml" />
-    <Content Include="Views\Motels\AscendingPrice.cshtml" />
-    <Content Include="Views\Motels\DateNew.cshtml" />
-    <Content Include="Views\Motels\DecreasePrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
