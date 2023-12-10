@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebQLNhaTro.Models;
 using System.IO;
+using PagedList;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
@@ -14,10 +15,12 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
 
         NhaTroEntities2 db = new NhaTroEntities2();
         // GET: Admin/Product
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             var sp = db.motels;
-            return View(sp);
+            int ipagesize = 6;
+            int ipagenum = (page ?? 1);
+            return View(sp.OrderByDescending(x=>x.CreateDate).ToPagedList(ipagenum,ipagesize));
         }
         
         public ActionResult Add()
