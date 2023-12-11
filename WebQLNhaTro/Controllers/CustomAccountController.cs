@@ -10,7 +10,7 @@ namespace WebQLNhaTro.Controllers
 {
     public class CustomAccountController : Controller
     {
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
         // GET: CustomAccount
         public ActionResult Index()
         {
