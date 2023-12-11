@@ -9,7 +9,7 @@ namespace WebQLNhaTro.Controllers
 {
     public class HomeController : Controller
     {
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
 
 
         public ActionResult Index()

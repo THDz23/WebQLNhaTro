@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
 
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
 
         // GET: Admin/Category
         public ActionResult Index()

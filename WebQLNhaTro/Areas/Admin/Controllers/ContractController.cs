@@ -8,9 +8,10 @@ using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "2")]
     public class ContractController : Controller
     {
-        private NhaTroEntities3 db = new NhaTroEntities3();
+        private NhaTroEntities4 db = new NhaTroEntities4();
 
         public object[] MotelID { get; private set; }
 

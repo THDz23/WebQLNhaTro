@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Controllers
     public class MotelsController : Controller
     {
 
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
         
         // GET: Motels
         
@@ -94,16 +94,7 @@ namespace WebQLNhaTro.Controllers
                 return View(item.Where(x=>x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
         }
-<<<<<<< HEAD
-        
-=======
-        // bang hop dong,duyet quan ly dang ky
-        // ung dung thanh toan online
-        // order chi tiet
-        // dua thông tin khách vào 
 
-     
->>>>>>> Dev1
         public JsonResult GetByName(string keyword)
         {
             var allsearch = db.motels.Where(x => x.Title.Contains(keyword)).Select(x => new Seach { 

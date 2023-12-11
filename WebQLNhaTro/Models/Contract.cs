@@ -15,7 +15,7 @@ namespace WebQLNhaTro.Models
     public partial class Contract
     {
         public int ContractID { get; set; }
-        public Nullable<System.DateTime> DateHide { get; set; }
+        public Nullable<System.DateTime> Datefounded { get; set; }
         public Nullable<System.DateTime> Expirationdate { get; set; }
         public Nullable<int> HostID { get; set; }
         public Nullable<int> MotelID { get; set; }

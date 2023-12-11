@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     public class searchpriceController : Controller
     {
 
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
         // GET: Admin/searchprice
         public ActionResult Index()
         {
