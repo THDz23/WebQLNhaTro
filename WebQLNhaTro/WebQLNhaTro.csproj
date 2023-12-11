@@ -2724,9 +2724,9 @@
     <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\CustomDetails.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

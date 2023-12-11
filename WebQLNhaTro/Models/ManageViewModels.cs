@@ -77,7 +77,7 @@ namespace WebQLNhaTro.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
     }
-    public partial class Contract
+    public partial class Order
     {
         // ... Các thuộc tính hiện có
 
