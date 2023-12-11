@@ -4,10 +4,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    function handleRegister(motelId) {
+        $.ajax({
+            type: "GET",
+            url: "/Registration/GetMotelInfo",
+            data: { motelId: motelId },
+            success: function (motelInfo) {
+                console.log(motelInfo);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
 
 <section class="intro-single">
     @using (Html.BeginForm("Index", "Motels", FormMethod.Get))
@@ -120,6 +137,9 @@
                                             <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </div>
+                                    <button type="button" class="btn btn-primary register-button mb-3" data-motelid="@tro.MotelID" data-toggle="tooltip" title="Đăng ký trọ">
+                                        <i class="fas fa-check"></i> Đăng ký
+                                    </button>
                                     <div class="card-footer-a">
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
@@ -137,9 +157,9 @@
                                                 <h4 class="card-info-title">Điện thoại</h4>
                                                 <span>@tro.Host.Phone</span>
                                             </li>
-
                                         </ul>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -149,14 +169,14 @@
 
         </div>
         <div class="row">
-           
+
         </div>
     </div>
 </section>
 
 
 <script>
-    
+
         $("#keyword").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -172,7 +192,36 @@
                     }
                 });
             },
-            
+
         });
-    
+
 </script>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.register-button').on('click', function () {
+                var motelId = $(this).data('motelid');
+                registerMotel(motelId);
+            });
+
+            function registerMotel(motelId) {
+                $.ajax({
+                    url: '/Motels/Register',
+                    type: 'POST',
+                    data: { MotelID: motelId },
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
+                        } else {
+                            alert(result.message);
+                        }
+                    },
+                    error: function () {
+                        alert('Có lỗi xảy ra. Vui lòng thử lại.');
+                    }
+                });
+            }
+        });
+    </script>
+}
+
