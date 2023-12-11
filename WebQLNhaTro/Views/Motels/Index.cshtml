@@ -1,5 +1,5 @@
-﻿@model IEnumerable<WebQLNhaTro.Models.motel>
-@using PagedList.Mvc
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebQLNhaTro.Models.motel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,160 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<style>
+    .menu {
+        display: inline;
+        text-align: center;
+    }
 
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+        }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.428571429;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+    }
+
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        margin-left: 0;
+    }
+
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
+        color: #999999;
+        background-color: #ffffff;
+        border-color: #dddddd;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #337ab7;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    .pagination-lg > li:first-child > a,
+    .pagination-lg > li:first-child > span {
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+    }
+
+    .pagination-lg > li:last-child > a,
+    .pagination-lg > li:last-child > span {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .pagination-sm > li:first-child > a,
+    .pagination-sm > li:first-child > span {
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    .pagination-sm > li:last-child > a,
+    .pagination-sm > li:last-child > span {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .pager {
+        padding-left: 0;
+        margin: 20px 0;
+        text-align: center;
+        list-style: none;
+        clear: both;
+    }
+
+        .pager:before,
+        .pager:after {
+            display: table;
+            content: " ";
+        }
+
+        .pager:after {
+            clear: both;
+        }
+
+        .pager li {
+            display: inline;
+        }
+
+            .pager li > a,
+            .pager li > span {
+                display: inline-block;
+                padding: 5px 14px;
+                border: 1px solid #dddddd;
+                background-color: #ffffff;
+                border-radius: 15px;
+            }
+
+                .pager li > a:hover,
+                .pager li > a:focus {
+                    text-decoration: none;
+                    background-color: #eeeeee;
+                }
+
+        .pager .next > a,
+        .pager .previous > span {
+            float: left;
+        }
+
+        .pager .disabled > a,
+        .pager .disabled > a:hover,
+        .pager .disabled > a:focus,
+        .pager .disabled > span {
+            color: #999999;
+            background-color: #ffffff;
+        }
+
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+</style>
 <section class="intro-single">
     @using (Html.BeginForm("Index", "Motels", FormMethod.Get))
     {
@@ -120,6 +273,9 @@
                                             <span class="ion-ios-arrow-forward"></span>
                                         </a>
                                     </div>
+                                    <button type="button" class="btn btn-primary register-button mb-3" data-motelid="@tro.MotelID" data-toggle="tooltip" title="Đăng ký trọ">
+                                        <i class="fas fa-check"></i> Đăng ký
+                                    </button>
                                     <div class="card-footer-a">
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
@@ -154,7 +310,9 @@
         </div>
     </div>
 </section>
-
+<div class="menu">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
 
 
 <script>
@@ -200,5 +358,41 @@
             },
 
         });
+    function handleRegister(motelId) {
+        $.ajax({
+            type: "GET",
+            url: "/Registration/GetMotelInfo",
+            data: { motelId: motelId },
+            success: function (motelInfo) {
+                console.log(motelInfo);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
 
+    $(document).ready(function () {
+        $('.register-button').on('click', function () {
+            var motelId = $(this).data('motelid');
+            registerMotel(motelId);
+        });
+        function registerMotel(motelId) {
+            $.ajax({
+                url: '/Motels/Register',
+                type: 'POST',
+                data: { MotelID: motelId },
+                success: function (result) {
+                    if (result.success) {
+                        alert(result.message);
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra. Vui lòng thử lại.');
+                }
+            });
+        }
+    });
 </script>

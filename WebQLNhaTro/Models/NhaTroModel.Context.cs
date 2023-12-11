@@ -13,10 +13,10 @@ namespace WebQLNhaTro.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NhaTroEntities3 : DbContext
+    public partial class NhaTroEntities4 : DbContext
     {
-        public NhaTroEntities3()
-            : base("name=NhaTroEntities3")
+        public NhaTroEntities4()
+            : base("name=NhaTroEntities4")
         {
         }
     
@@ -36,6 +36,5 @@ namespace WebQLNhaTro.Models
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<searchprice> searchprices { get; set; }
-        public object AdminAccounts { get; internal set; }
     }
 }

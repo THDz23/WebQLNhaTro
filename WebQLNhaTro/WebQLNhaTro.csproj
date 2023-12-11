@@ -232,12 +232,12 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageMotelsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ManagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\searchpriceController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingViewModel.cs" />
+    <Compile Include="Controllers\CustomAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MotelsController.cs" />
@@ -260,6 +260,7 @@
     <Compile Include="Models\custom.cs">
       <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Host.cs">
       <DependentUpon>NhaTroModel.tt</DependentUpon>
     </Compile>
@@ -2577,6 +2578,8 @@
     <Content Include="Image\Tro1.jpg" />
     <Content Include="Image\Tro2.jpg" />
     <Content Include="Image\Tro3.jpg" />
+    <Content Include="Image\user.jpg" />
+    <Content Include="Image\User2.jpg" />
     <Content Include="Models\NhaTroModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
@@ -2712,13 +2715,6 @@
     <Content Include="Areas\Admin\Views\Manages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageMotels\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageMotels\Calculate.cshtml" />
-    <EntityDeploy Include="Models\NhaTroModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NhaTroModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NhaTroModel.edmx.diagram">
-      <DependentUpon>NhaTroModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
@@ -2727,6 +2723,16 @@
     <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\CustomDetails.cshtml" />
+
+
+    <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
+    <EntityDeploy Include="Models\NhaTroModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NhaTroModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NhaTroModel.edmx.diagram">
+      <DependentUpon>NhaTroModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2774,11 +2780,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Motels\Detail.cshtml" />
     <Content Include="Views\Motels\Index.cshtml" />
-    <Content Include="Views\Motels\AscendingPrice.cshtml" />
-    <Content Include="Views\Motels\DateNew.cshtml" />
-    <Content Include="Views\Motels\DecreasePrice.cshtml" />
     <Content Include="Views\Motels\RegisterRoom.cshtml" />
     <Content Include="Views\Motels\ContractDetails.cshtml" />
+    <Content Include="Views\CustomAccount\Login.cshtml" />
+    <Content Include="Views\CustomAccount\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

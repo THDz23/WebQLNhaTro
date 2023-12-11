@@ -3,10 +3,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 @section naviheader{
     <h3>Danh sách</h3>
-    <p style="margin-left: 40px"> Đã cho thuê  | Chưa thu phí </p>
+    <p style="margin-left: 40px">   Đã cho thuê <a style="color:red;text-decoration:none">@Model.Count()</a> &nbsp&nbsp | &nbsp&nbsp Chưa thu phí @Model.Count() <a style="color:red;text-decoration:none"> </a> </p>
 }
 
 <style>
@@ -29,6 +28,7 @@
 
 <div class="row" style="margin-left:70px">
     <div class="row space">
+        
         @foreach(var rs in Model)
         {
         <div class="col-md-4">
@@ -42,9 +42,8 @@
                                 <tbody>
                                     <tr style="text-align:center">
                                         <td class="row">
-                                            <a href="" class="btn btn-warning">Sửa</a>
-                                            <a href="" class="btn btn-primary">Xem</a>
-                                            <a href="" class="btn btn-danger">Xóa</a>
+                                            <a href="/admin/ManageMotels/edit/@rs.ContractID" class="btn btn-warning">Sửa</a>
+                                            <a href="/admin/ManageMotels/delete/@rs.ContractID" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -55,7 +54,7 @@
                         <div class="card-body-a" style="margin-left: 10px">
                             <p style="color:green"><i class="fas fa-user"></i>  @rs.custom.fullName</p>
                             <p style="color:red"><i class="fas fa-money-bill-wave"></i>  @rs.Priece</p>
-                            <p>@rs.Status</p>
+                           
                         </div>
 
                         <div class="card-footer-a">
@@ -64,7 +63,6 @@
                                     <tr>
                                         <td>
                                             <a href="/admin/ManageMotels/Calculate/@rs.ContractID" class="btn btn-primary">Tính tiền</a>
-                                            <a href="" class="btn btn-success">Gửi mail</a>
                                         </td>
                                     </tr>
                                 </tbody>

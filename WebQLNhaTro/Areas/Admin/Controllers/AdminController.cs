@@ -8,9 +8,10 @@ using WebQLNhaTro.Models;
 
 namespace WebQLNhaTro.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "1")]
     public class AdminController : Controller
     {
-        private NhaTroEntities3 db = new NhaTroEntities3();
+        private NhaTroEntities4 db = new NhaTroEntities4();
 
         public ActionResult Index()
         {

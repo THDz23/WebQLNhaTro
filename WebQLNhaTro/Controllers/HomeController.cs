@@ -9,15 +9,13 @@ namespace WebQLNhaTro.Controllers
 {
     public class HomeController : Controller
     {
-        NhaTroEntities3 db = new NhaTroEntities3();
+        NhaTroEntities4 db = new NhaTroEntities4();
 
 
         public ActionResult Index()
         {
-            // Lấy danh sách nhà trọ có Status là "Duyệt"
             var motels = db.motels.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).Take(6).ToList();
 
-            // Trả về view hiển thị danh sách nhà trọ
             return View(motels);
         }
 
@@ -28,14 +26,7 @@ namespace WebQLNhaTro.Controllers
             return View();
         }
 
-        public ActionResult ListWithAreaIDOne()
-        {
-            // Lấy danh sách nhà trọ có AreaID là 1 và Status là "Duyệt"
-            var motelsWithAreaIDOne = db.motels.Where(x => x.AreaID == 1 && x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).Take(6).ToList();
-
-            // Trả về view hiển thị danh sách nhà trọ có AreaID là 1
-            return View("Index", motelsWithAreaIDOne);
-        }
+       
 
         public ActionResult Contact()
         {

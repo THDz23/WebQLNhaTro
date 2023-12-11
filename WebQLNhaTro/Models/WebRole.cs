@@ -38,7 +38,7 @@ namespace WebQLNhaTro.Models
         public override string[] GetRolesForUser(string username)
         {
 
-            NhaTroEntities3 db = new NhaTroEntities3();
+            NhaTroEntities4 db = new NhaTroEntities4();
             string data = db.ADMINs.Where(x => x.Account == username).FirstOrDefault().permission;
             string[] result = { data };
             return result;

@@ -147,34 +147,7 @@
 
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="title-wrap d-flex justify-content-between">
-            <div class="title-box">
-                <h2 class="title-a">Nhà trọ mã vùng 1</h2>
-            </div>
-            <!-- If you want a link to view all motels with AreaID equal to 1 -->
-            <div class="title-link">
-                <a href="/motels/ListWithAreaIDOne">
-                    Xem tất cả
-                    <span class="ion-ios-arrow-forward"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div id="property-carousel-area-1" class="owl-carousel owl-theme">
-    @if (Model != null && Model.Any())
-    {
-        var motelsWithAreaIDOne = Model.Where(x => x.AreaID == 1).Take(6);
-        foreach (var tro in motelsWithAreaIDOne)
-        {
-            <!-- Display motels with AreaID equal to 1 -->
-            <!-- ... -->
-        }
-    }
-</div>
 
 <section class="section-testimonials section-t8 nav-arrow-a">
     <div class="container">
@@ -193,7 +166,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="testimonial-img">
-                                <img src="img/user1.jpg" alt="" class="img-fluid">
+                                <img src="~/Image/user.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -207,8 +180,8 @@
                                 </p>
                             </div>
                             <div class="testimonial-author-box">
-                                <img src="img/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
-                                <h5 class="testimonial-author">TrungKenbi</h5>
+                                <img src="~/Image/user.jpg" alt="" class="testimonial-avatar">
+                                <h5 class="testimonial-author">Nguyen A</h5>
                             </div>
                         </div>
                     </div>
@@ -219,7 +192,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="testimonial-img">
-                                <img src="img/user2.jpg" alt="" class="img-fluid">
+                                <img src="~/Image/User2.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -232,7 +205,7 @@
                                 </p>
                             </div>
                             <div class="testimonial-author-box">
-                                <img src="img/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
+                                <img src="~/Image/User2.jpg" alt="" class="testimonial-avatar">
                                 <h5 class="testimonial-author">DarkPaladinDuy</h5>
                             </div>
                         </div>

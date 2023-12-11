@@ -14,16 +14,12 @@ namespace WebQLNhaTro.Models
     
     public partial class ADMIN
     {
-        internal object custom;
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ADMIN()
         {
             this.Hosts = new HashSet<Host>();
         }
-        public string fullName { get; set; }
-        public string gender { get; set; }
-        public string Email { get; set; }
+    
         public int IDAdmin { get; set; }
         public string Account { get; set; }
         public string password { get; set; }
