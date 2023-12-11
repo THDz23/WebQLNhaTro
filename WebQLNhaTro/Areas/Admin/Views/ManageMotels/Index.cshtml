@@ -5,7 +5,7 @@
 }
 @section naviheader{
     <h3>Danh sách</h3>
-    <p style="margin-left: 40px">   Đã cho thuê <a style="color:red;text-decoration:none">@Model.Count()</a> &nbsp&nbsp | &nbsp&nbsp Chưa thu phí <a style="color:red;text-decoration:none"> </a> </p>
+    <p style="margin-left: 40px">   Đã cho thuê <a style="color:red;text-decoration:none">@Model.Count()</a> &nbsp&nbsp | &nbsp&nbsp Chưa thu phí @Model.Count() <a style="color:red;text-decoration:none"> </a> </p>
 }
 
 <style>
@@ -42,9 +42,8 @@
                                 <tbody>
                                     <tr style="text-align:center">
                                         <td class="row">
-                                            <a href="" class="btn btn-warning">Sửa</a>
-                                            <a href="" class="btn btn-primary">Xem</a>
-                                            <a href="" class="btn btn-danger">Xóa</a>
+                                            <a href="/admin/ManageMotels/edit/@rs.ContractID" class="btn btn-warning">Sửa</a>
+                                            <a href="/admin/ManageMotels/delete/@rs.ContractID" class="btn btn-danger">Xóa</a>
                                         </td>
                                     </tr>
                                 </tbody>

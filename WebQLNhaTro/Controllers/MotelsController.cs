@@ -27,77 +27,74 @@ namespace WebQLNhaTro.Controllers
             if (!string.IsNullOrEmpty(keyword) && Danhmuc == 0 && KhuVuc == 0 && giatu == 0)
             {
                 item = item.Where(x => x.Title.Contains(keyword)).OrderBy(x=>x.Price);
-                return View(item.OrderByDescending(x=>x.CreateDate).ToPagedList(ipagenum,ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x=>x.CreateDate).ToPagedList(ipagenum,ipagesize));
             }
             else if (!string.IsNullOrEmpty(keyword) && Danhmuc != 0 && KhuVuc != 0 && giatu == 0)
             {
                     item = item.Where(x => x.Title.Contains(keyword) && x.CategoryID == Danhmuc && x.AreaID == KhuVuc).OrderBy(x => x.Price);
-                    return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                    return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (!string.IsNullOrEmpty(keyword) && Danhmuc != 0 && KhuVuc == 0 && giatu != 0)
             {
                 item = item.Where(x => x.Title.Contains(keyword) && x.CategoryID == Danhmuc && x.ID == giatu).OrderBy(x => x.Price);
-                return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (!string.IsNullOrEmpty(keyword) && Danhmuc != 0 && KhuVuc != 0 && giatu != 0)
             {
                 item = item.Where(x => x.Title.Contains(keyword) && x.CategoryID == Danhmuc && x.AreaID == KhuVuc && x.ID == giatu).OrderBy(x => x.Price);
-                return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (!string.IsNullOrEmpty(keyword) && Danhmuc == 0 && KhuVuc != 0 && giatu != 0)
             {
                 item = item.Where(x => x.Title.Contains(keyword) && x.AreaID  == KhuVuc && x.ID == giatu).OrderBy(x => x.Price);
-                return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (!string.IsNullOrEmpty(keyword) && Danhmuc != 0 && KhuVuc == 0 && giatu == 0)
             {
                 item = item.Where(x => x.Title.Contains(keyword) && x.CategoryID == Danhmuc).OrderBy(x => x.Price);
-                return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             if (Danhmuc != 0 && KhuVuc == 0 && giatu == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.CategoryID == Danhmuc);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (Danhmuc != 0 && KhuVuc != 0 && giatu == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.CategoryID == Danhmuc && x.AreaID == KhuVuc);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if(Danhmuc != 0 && KhuVuc != 0 && giatu != 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.CategoryID == Danhmuc && x.AreaID == KhuVuc && x.ID == giatu);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (KhuVuc != 0 && giatu != 0 && Danhmuc == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.ID == giatu && x.AreaID == KhuVuc);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (KhuVuc != 0 && giatu == 0 && Danhmuc == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.AreaID == KhuVuc);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if (KhuVuc == 0 && giatu != 0 && Danhmuc == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.ID == giatu);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else if(Danhmuc != 0 && giatu != 0 && KhuVuc == 0)
             {
                 item = (IOrderedQueryable<motel>)item.Where(x => x.ID == giatu && x.CategoryID == Danhmuc);
-                return View(item.ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x => x.Status.Equals("Duyệt")).ToList().OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
             else
             {
-                return View(item.OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
+                return View(item.Where(x=>x.Status.Equals("Duyệt")).OrderByDescending(x => x.CreateDate).ToPagedList(ipagenum, ipagesize));
             }
         }
-        // bang hop dong,duyet quan ly dang ky
-        // ung dung thanh toan online
-        // order chi tiet
-        // dua thông tin khách vào 
+        
         public JsonResult GetByName(string keyword)
         {
             var allsearch = db.motels.Where(x => x.Title.Contains(keyword)).Select(x => new Seach { 

@@ -1,0 +1,159 @@
+﻿@model WebQLNhaTro.Models.motel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sửa nhà trọ </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Nhà trọ</a></li>
+                    <li class="breadcrumb-item active">Cập nhập</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin cập nhập</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tên nhà trọ:</label>
+                                        <input type="text" name="txtTenTro" class="form-control" placeholder="Tên nhà trọ" value="@Model.Title" />
+                                    </div>
+
+                                    <div class="form-group" hidden>
+                                        
+                                        <input type="text" name="MoID" class="form-control" placeholder="Tên nhà trọ" value="@Model.MotelID" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Ảnh đại diện:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <input type="file" name="fileUp" required />
+                                                <img src="~/Image/@Model.Image" width="120" height="50" /> (Ảnh hiện tại)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Địa chỉ:</label>
+                                        <input type="text" name="txtDiaChi" class="form-control" placeholder="Địa chỉ" value="@Model.Address" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Chi tiết:</label>
+                                        <textarea name="sMoTa" id="mota" class="form-control">@Model.Description</textarea>
+                                        <script>CKEDITOR.replace('mota');</script>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Trạng thái</label>
+                                        <input type="text" name="txtTrangThai" class="form-control" value="@Model.Status" readonly />
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Diện tích:</label>
+                                                <input type="text" name="dientich" class="form-control" required value="@Model.Acreage" />
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Giá:</label>
+                                                <input type="text" name="gia" class="form-control" value="@Model.Price" />
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Lọc giá:</label>
+                                                @Html.DropDownList("GiaTu", (IEnumerable<SelectListItem>)ViewBag.Gia, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Khu vực:</label>
+                                                @Html.DropDownList("KhuVuc", (IEnumerable<SelectListItem>)ViewBag.KhuVuc, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Danh mục:</label>
+                                                @Html.DropDownList("DanhMuc", (IEnumerable<SelectListItem>)ViewBag.DanhMuc, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+
+                                        <div class="col-2" hidden>
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Mã:</label>
+                                                <input type="text" name="Ma" class="form-control" value="@Model.HostID" readonly />
+                                                <input type="text" name="ngay" class="form-control" value="@Model.CreateDate" readonly />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <!-- /.tab-pane -->
+                                
+                                
+
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+
+                        <div class="form-group" style="text-align:center">
+                            <button type="submit" class="btn btn-success">Lưu</button>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                }
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</section>
+

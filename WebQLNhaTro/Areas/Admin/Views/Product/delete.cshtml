@@ -1,0 +1,130 @@
+﻿@model WebQLNhaTro.Models.motel
+
+@{
+    ViewBag.Title = "delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">XÁC THỰC THÔNG TIN</h2>
+
+<h3 style="text-align:center;color:red">BẠN THỰC SỰ MUỐN XÓA ??</h3>
+<h4 style="text-align:center;color:red">@Html.Raw(ViewBag.ThongBao)</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="text-align:center">
+        <dt>
+            Giá:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            Diện tích:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acreage)
+        </dd>
+
+        <dt>
+            Địa chỉ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            Ngày tạo:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            Ngày sửa:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiledDate)
+        </dd>
+
+        <dt>
+            Tình trạng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            Mã khu vực:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaID)
+        </dd>
+
+        <dt>
+            Mã danh mục:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+
+        <dt>
+            Tên nhà trọ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Hình ảnh:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            Mã chủ trọ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HostID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFavorite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFavorite)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("delete","Product", FormMethod.Post, new { }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Xóa" class="btn btn-danger" />  | 
+            @Html.ActionLink("QUAY VỀ TRANG CHỦ", "Index")
+        </div>
+    }
+</div>

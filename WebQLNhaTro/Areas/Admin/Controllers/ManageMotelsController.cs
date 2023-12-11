@@ -75,5 +75,47 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
             }
             return View();
         }
+        public ActionResult Edit(int id)
+        {
+            var item = db.Contracts.Where(a => a.ContractID == id);
+            return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Contract c,FormCollection f)
+        {
+            if (ModelState.IsValid)
+            {
+                c.ContractID = int.Parse(f["idCon"]);
+                c.Datefounded = Convert.ToDateTime(f["dateF"]);
+                c.Expirationdate = Convert.ToDateTime( f["DateE"]);
+                c.HostID = int.Parse(f["idHost"]);
+                c.MotelID = int.Parse(f["idMo"]);
+                c.CustomID = int.Parse(f["idCus"]);
+                c.Electric = decimal.Parse(f["elec"]);
+                c.Water = decimal.Parse(f["water"]);
+                c.Priece = decimal.Parse(f["sumVal"]);
+                c.Wifi = decimal.Parse(f["wifi"]);
+                c.Status = f["status"];
+                db.Contracts.Attach(c);
+                db.Entry(c).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(c);
+        }
+        public ActionResult delete(int id)
+        {
+            var item = db.Contracts.Where(a => a.ContractID == id);
+            return View(item);
+        }
+        [HttpPost,ActionName ( "delete")]
+        public ActionResult deletecof(int id)
+        {
+            var item = db.Contracts.FirstOrDefault(a => a.ContractID == id);
+            db.Contracts.Remove(item);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

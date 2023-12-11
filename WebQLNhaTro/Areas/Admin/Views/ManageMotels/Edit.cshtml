@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.Contract>
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/home" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/Category" class="nav-link">Quản lý hợp đồng</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Cập nhật</a>
+        </li>
+    </ul>
+}
+
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin cập nhập</h3>
+        </div>
+
+        <div class="card-body">
+            
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Edit", "ManageMotels", FormMethod.Post, new { }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    
+                    foreach (var rs in Model)
+                {
+                <div id="logins-part" class="content active dstepper-block" role="tabpanel" CategoryMotel-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tên chủ trọ </label>
+                        <input type="text" name="CategoryID" value="@rs.Host.OwnerName" readonly class="form-control" />
+                        <input type="text" name="idHost" value="@rs.HostID" hidden />
+                        <input type="text" name="idMo" value="@rs.MotelID" hidden />
+                        <input type="text" name="idCon" value="@rs.ContractID" hidden />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Khách thuê </label>
+                        <input type="text" name="CategoryID" value="@rs.custom.fullName" readonly class="form-control" />
+                        <input type="text" name="idCus" value="@rs.CustomID" hidden />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ngày lập: </label>
+                        <input type="datetime" name="dateF" value="@Convert.ToDateTime(rs.Datefounded)" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Ngày hết hạn: </label>
+                        <input type="datetime" name="DateE" value="@Convert.ToDateTime(rs.Expirationdate)" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Điện </label>
+                        <input type="text" name="elec" value="@rs.Electric" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nước</label>
+                        <input type="text" name="water" value="@rs.Water" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mạng</label>
+                        <input type="text" name="wifi" value="@rs.Wifi" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tổng tiền</label>
+                        <input type="text" name="sumVal" value="@rs.Priece" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Trang thái</label>
+                        <input type="text" name="status" value="@rs.Status" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <a href="/admin/category" class="btn btn-danger">Quay lại</a>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </div>
+                }
+
+                        
+                }
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</section>
+
