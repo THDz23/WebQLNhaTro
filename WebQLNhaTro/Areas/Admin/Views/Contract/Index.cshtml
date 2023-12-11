@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebQLNhaTro.Models.Contract>
+﻿@model IEnumerable<WebQLNhaTro.Models.Order>
 
 @{
     ViewBag.Title = "Các hợp đồng";
@@ -6,10 +6,19 @@
 }
 
 <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     th, td {
@@ -19,7 +28,12 @@
     }
 
     th {
-        background-color: #f2f2f2;
+        background-color: #4caf50;
+        color: #fff;
+    }
+
+    tr:hover {
+        background-color: #f0f0f0;
     }
 
     div {
@@ -43,8 +57,43 @@
                 background-color: #45a049;
             }
 
-    tr:hover {
-        background-color: #f5f5f5;
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-button {
+        background-color: #2196F3;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .action-button:hover {
+            background-color: #0b7dda;
+        }
+
+    .details-link {
+        color: #2196F3;
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #2196F3;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+        .details-link:hover {
+            text-decoration: underline;
+            background-color: #2196F3;
+            color: white;
+        }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 </style>
 
@@ -66,61 +115,48 @@
     {
         <tr>
             <th>Người Thuê Nhà</th>
-            <th>Ngày Hết Hạn</th>
+            <th>Ngay dang ky</th>
             <th>Trạng Thái</th>
             <th>Thông Tin Nhà Trọ</th>
-            <th>Thao Tác</th>
         </tr>
-        foreach (var contract in Model)
+        foreach (var order in Model)
         {
-            if (!contract.IsLocked && contract.custom != null && contract.motel != null) // Kiểm tra nếu chưa bị khóa và có thông tin custom và motel mới hiển thị
+            if (!order.IsLocked && order.custom != null && order.motel != null)
             {
-<tr>
-    <td>@contract.custom.fullName</td>
-    <td>@contract.Expirationdate</td>
-    <td>@contract.Status</td>
-    <td>
-        <strong>Giá:</strong> @contract.motel.Price<br />
-        <strong>Diện tích:</strong> @contract.motel.Acreage<br />
-        <strong>Địa chỉ:</strong> @contract.motel.Address<br />
-        <strong>Trạng thái nhà trọ:</strong> @contract.motel.Status<br />
-        <strong>Tiêu đề:</strong> @contract.motel.Title<br />
-        <img src="@contract.motel.Image" alt="Ảnh nhà trọ" style="max-width: 100px; max-height: 100px;" />
-    </td>
-    <td>
-        <button onclick="approveContract('@Url.Action("ApproveContract", "Contract")', @contract.ContractID)"
-                @if (contract.Status != "Chờ Duyệt") { <text> disabled</text> }>
-            Duyệt
-        </button>
+                <tr>
+                    <td>@order.custom.fullName</td>
+                    <td>@order.CreateDate</td>
+                    <td>@order.Status</td>
+                    <td>
+                        <strong>Giá:</strong> @order.motel.Price<br />
+                        <strong>Diện tích:</strong> @order.motel.Acreage<br />
+                        <strong>Địa chỉ:</strong> @order.motel.Address<br />
+                        <strong>Trạng thái nhà trọ:</strong> @order.motel.Status<br />
+                        <strong>Tiêu đề:</strong> @order.motel.Title<br />
+                        <img src="@order.motel.Image" alt="Ảnh nhà trọ" style="max-width: 100px; max-height: 100px;" />
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button onclick="approveContract('@Url.Action("ApproveContract", "Order")', @order.OrderID)"
+                                    @if (order.Status != "Chờ Duyệt") { <text> disabled</text> }>
+                                Duyệt
+                            </button>
 
+                            @Html.ActionLink("Chi Tiết", "Details", new { id = order.OrderID }, new { @class = "details-link" })
 
-        @if (contract.Status == "Chờ Duyệt" || contract.Status == "Đã Duyệt")
-        {
-            <button onclick="lockContract('@Url.Action("LockContract", "Contract")', @contract.ContractID)">Khóa</button>
-        }
+                            @Html.ActionLink("Chi Tiết Custom", "CustomDetails", new { customId = order.CustomID }, new { @class = "details-link" })
+                        </div>
+                    </td>
+                </tr>
 
-        <a href="@Url.Action("Details", "Contract", new { id = contract.ContractID })">Chi Tiết</a>
-    </td>
-    <td>
-        @Html.ActionLink("Chi Tiết Custom", "CustomDetails", "Contract", new { customId = contract.CustomID }, null)
-    </td>
-
-    <!-- Thêm nút Mở Khóa cho nhà trọ -->
-    <td>
-        @if (contract.Status == "Khóa")
-        {
-            <button onclick="unlockContract('@Url.Action("UnlockContract", "Contract")', @contract.ContractID)">Mở Khóa</button>
-        }
-    </td>
-
-
-</tr>
             }
-        }
 
+
+        }
     }
-    
+
 </table>
+
 
 
 <script>
@@ -131,9 +167,9 @@
                 type: 'POST',
                 data: { contractId: contractId },
                 success: function () {
-                    // Thực hiện các hành động cần thiết sau khi duyệt thành công
+
                     alert("Hợp đồng đã được duyệt!");
-                    location.reload(); // Tải lại trang để cập nhật dữ liệu
+                    location.reload();
                 },
                 error: function () {
                     alert("Đã xảy ra lỗi khi duyệt hợp đồng.");
@@ -165,9 +201,9 @@
                 type: 'POST',
                 data: { contractId: contractId },
                 success: function () {
-                    // Thực hiện các hành động cần thiết sau khi khóa thành công
+
                     alert("Hợp đồng đã được khóa!");
-                    location.reload(); // Tải lại trang để cập nhật dữ liệu
+                    location.reload();
                 },
                 error: function () {
                     alert("Đã xảy ra lỗi khi khóa hợp đồng.");
