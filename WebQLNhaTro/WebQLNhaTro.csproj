@@ -2730,6 +2730,10 @@
     <Content Include="Models\NhaTroModel.edmx.diagram">
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Browseposts\Browes.cshtml" />
+    <Content Include="Areas\Admin\Views\Browseposts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Browseposts\show.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

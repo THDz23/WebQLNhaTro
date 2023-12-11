@@ -11,112 +11,95 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
     [Authorize(Roles = "2")]
     public class ContractController : Controller
     {
-        private NhaTroEntities4 db = new NhaTroEntities4();
+        NhaTroEntities4 db = new NhaTroEntities4();
 
         public object[] MotelID { get; private set; }
 
         // GET: Admin/Contract
         public ActionResult Index(string statusFilter)
         {
-            IQueryable<Contract> contracts = db.Contracts.Include("Custom");
+            IQueryable<Order> orders = db.Orders.Include("Custom");
 
-            // Lọc theo trạng thái nếu được chọn
+
             if (!string.IsNullOrEmpty(statusFilter))
             {
-                contracts = contracts.Where(c => c.Status == statusFilter);
+                orders = orders.Where(o => o.Status == statusFilter);
             }
 
-            // Lấy danh sách tất cả hợp đồng
-            var allContracts = contracts.ToList();
+            var allOrders = orders.ToList();
 
-            return View(allContracts);
+            return View(allOrders);
         }
-
         public ActionResult ApproveContract(int contractId)
         {
-            var contract = db.Contracts.Find(contractId);
-            if (contract != null && contract.Status == "Chờ Duyệt")
+            var order = db.Orders.Find(contractId);
+            if (order != null && order.Status == "Chờ Duyệt")
             {
-                contract.Status = "Đã Duyệt";
-                db.Entry(contract).State = EntityState.Modified;
+                order.Status = "Đã Duyệt";
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
 
-                // Cập nhật trạng thái cho nhà trọ
-                UpdateMotelStatus(contract.motel.MotelID, "Khóa");
+                UpdateMotelStatus(order.motel.MotelID, "Khóa");
 
                 return Json(new { success = true });
             }
+            return View();
+        }
 
-            return Json(new { success = false, message = "Không thể duyệt hợp đồng nhà trọ này." });
+        private void UpdateMotelStatus(int motelID, string v)
+        {
+            throw new NotImplementedException();
         }
 
         public ActionResult LockContract(int contractId)
         {
-           
-            var contract = db.Contracts.Find(contractId);
-            if (contract != null && contract.Status == "Duyệt")
+
+            var order = db.Orders.Find(contractId);
+            if (order != null && order.Status == "Duyệt")
             {
-                contract.Status = "Khóa";
-                db.Entry(contract).State = EntityState.Modified;
+                order.Status = "Khóa";
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return Json(new { success = true });
-            }
-
-            return Json(new { success = false, message = "Không thể khóa hợp đồng này." });
-        }
-        private void UpdateMotelStatus(int motelId, string status)
-        {
-            var motel = db.motels.Find(motelId);
-            if (motel != null)
-            {
-                motel.Status = status;
-                db.Entry(motel).State = EntityState.Modified;
                 db.SaveChanges();
             }
+            return View();
         }
+
         public ActionResult Details(int id)
         {
-            // Sử dụng Include để load thông tin Custom liên quan
-            var contract = db.Contracts.Include("Custom").SingleOrDefault(c => c.ContractID == id);
+            var order = db.Orders.Include("Custom").SingleOrDefault(c => c.OrderID == id);
 
-            if (contract == null)
+            if (order == null)
             {
                 return HttpNotFound();
             }
 
-            return View(contract);
+            return View(order);
         }
-
-       
         public ActionResult CustomDetails(int customId)
         {
             var custom = db.customs.Find(customId);
-
-            if (custom == null)
-            {
-                return HttpNotFound();
-            }
-
             return View(custom);
         }
         public ActionResult UnlockContract(int contractId)
         {
-            var contract = db.Contracts.Find(contractId);
-            if (contract != null && contract.Status == "Khóa")
+            var order = db.Orders.Find(contractId);
+            if (order != null && order.Status == "Khóa")
             {
-                contract.Status = "Duyệt"; // Cập nhật trạng thái là "Đã Duyệt" khi mở khóa
-                db.Entry(contract).State = EntityState.Modified;
+                order.Status = "Duyệt";
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
 
-                // Cập nhật trạng thái cho nhà trọ
-                UpdateMotelStatus(contract.motel.MotelID, "Duyệt");
+
+                UpdateMotelStatus(order.motel.MotelID, "Duyệt");
 
                 return Json(new { success = true });
             }
-
-            return Json(new { success = false, message = "Không thể mở khóa hợp đồng này." });
-
+            return View();
         }
+
+            
     }
 }
