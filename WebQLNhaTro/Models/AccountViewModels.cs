@@ -9,6 +9,16 @@ namespace WebQLNhaTro.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    public class AdminAccount
+    {
+        public int IDAdmin { get; set; }
+        public string Account { get; set; }
+        public string Password { get; set; }
+        public string Permission { get; set; }
+
+      
+    }
+   
 
     public class ExternalLoginListViewModel
     {
@@ -80,6 +90,7 @@ namespace WebQLNhaTro.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+   
 
     public class ResetPasswordViewModel
     {

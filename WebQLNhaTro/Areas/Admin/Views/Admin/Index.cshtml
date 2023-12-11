@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebQLNhaTro.Models.ADMIN>
+
+@{
+    ViewBag.Title = "Tất cả tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .action-buttons {
+        text-align: center;
+    }
+</style>
+
+<h2>Danh sách tất cả tài khoản</h2>
+
+@Html.ActionLink("Thêm tài khoản mới", "Create", null, new { @class = "btn btn-success" })
+
+<table>
+    <tr>
+        <th>IDAdmin</th>
+        <th>Account</th>
+        <th>Password</th>
+        <th>Permission</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var account in Model)
+    {
+        <tr>
+            <td>@account.IDAdmin</td>
+            <td>@account.Account</td>
+            <td>@account.password</td>
+            <td>@account.permission</td>
+            <td class="action-buttons">
+                @Html.ActionLink("Xem", "Details", new { id = account.IDAdmin }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = account.IDAdmin }) |
+                @Html.ActionLink("Xóa", "ConfirmDelete", new { id = account.IDAdmin }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+

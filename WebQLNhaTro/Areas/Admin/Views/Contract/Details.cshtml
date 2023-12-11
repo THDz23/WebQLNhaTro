@@ -1,0 +1,91 @@
+﻿@model WebQLNhaTro.Models.Contract
+
+@{
+    ViewBag.Title = "Chi Tiết Hợp Đồng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .dl-horizontal {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+        .dl-horizontal dt, .dl-horizontal dd {
+            flex: 0 0 50%; /* Chia đôi chiều rộng của cột */
+            margin-right: 10px;
+            padding: 10px;
+            box-sizing: border-box; /* Giữ padding không tăng kích thước */
+            border: 1px solid #ddd;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+
+        .dl-horizontal dd {
+            color: #333;
+        }
+
+    .btn-success {
+        background-color: #5cb85c;
+        color: #fff;
+        border: 1px solid #4cae4c;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .btn-success:hover {
+            background-color: #4cae4c;
+        }
+
+    /* Thêm các quy tắc CSS tùy ý cho các trường khác */
+</style>
+
+<h2>Chi Tiết Hợp Đồng</h2>
+
+<dl class="dl-horizontal">
+    <dt>Người Thuê Nhà</dt>
+    <dd>@Model.custom.fullName</dd>
+
+    <dt>Ngày Bắt Đầu</dt>
+    <dd>@Model.DateHide</dd>
+
+    <dt>Ngày Hết Hạn</dt>
+    <dd>@Model.Expirationdate</dd>
+
+    <dt>Điện</dt>
+    <dd>@Model.Electric</dd>
+
+    <dt>Nước</dt>
+    <dd>@Model.Water</dd>
+
+    <dt>Giá Thuê</dt>
+    <dd>@Model.Priece</dd>
+
+    <dt>Wifi</dt>
+    <dd>@Model.Wifi</dd>
+
+    <dt>Trạng Thái</dt>
+    <dd>@Model.Status</dd>
+
+    <!-- Thêm các trường khác tùy ý -->
+</dl>
+
+<p>
+    @if (Model.Status == "Khóa")
+    {
+        @Html.ActionLink("Mở Khóa", "UnlockContract", new { contractId = Model.ContractID }, new { @class = "btn btn-success" })
+    }
+</p>
+

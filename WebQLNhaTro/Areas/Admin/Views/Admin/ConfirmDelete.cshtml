@@ -1,0 +1,65 @@
+﻿@model WebQLNhaTro.Models.ADMIN
+
+@{
+    ViewBag.Title = "Xác nhận xóa tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    .btn-danger {
+        background-color: #d9534f;
+        color: #fff;
+        border: 1px solid #d43f3a;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #c9302c;
+        }
+
+    .btn-secondary {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #333;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #292929;
+        }
+</style>
+
+<h2>Xác nhận xóa tài khoản</h2>
+
+<p>Bạn có chắc chắn muốn xóa tài khoản có ID: @Model.IDAdmin?</p>
+
+@using (Html.BeginForm("Delete", "Admin", new { id = Model.IDAdmin }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="submit" value="Xóa" class="btn btn-danger" />
+}
+
+@Html.ActionLink("Hủy bỏ", "Index", null, new { @class = "btn btn-secondary" })

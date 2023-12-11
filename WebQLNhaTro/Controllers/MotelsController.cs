@@ -11,7 +11,7 @@ namespace WebQLNhaTro.Controllers
     public class MotelsController : Controller
     {
 
-        NhaTroEntities2 db = new NhaTroEntities2();
+        NhaTroEntities3 db = new NhaTroEntities3();
         
         // GET: Motels
         
@@ -97,6 +97,8 @@ namespace WebQLNhaTro.Controllers
         // ung dung thanh toan online
         // order chi tiet
         // dua thông tin khách vào 
+
+     
         public JsonResult GetByName(string keyword)
         {
             var allsearch = db.motels.Where(x => x.Title.Contains(keyword)).Select(x => new Seach { 
@@ -110,7 +112,63 @@ namespace WebQLNhaTro.Controllers
             var item = db.motels.Where(x=>x.MotelID == id).Single();
             return View(item);
         }
+        public ActionResult ListWithCategoryIDOne()
+        {
+            // Lấy danh sách nhà trọ có mã là 1
+            var motelsWithCategoryIDOne = db.motels.Where(x => x.CategoryID == 1).ToList();
+
+            // Trả về view hiển thị danh sách nhà trọ có mã là 1
+            return View("Index", motelsWithCategoryIDOne);
+        }
+
+        // Các action khác...
+
+        // Nếu bạn muốn sử dụng danh sách này ở nhiều nơi, bạn có thể đặt nó trong một phương thức riêng
+        private List<motel> GetMotelsWithCategoryIDOne()
+        {
+            return db.motels.Where(x => x.CategoryID == 1).ToList();
+        }
+
+        public ActionResult ContractDetails(int contractId)
+        {
+            try
+            {
+                // Lấy thông tin hợp đồng từ cơ sở dữ liệu dựa trên ContractID
+                var contract = db.Contracts.SingleOrDefault(c => c.ContractID == contractId);
+
+                if (contract == null)
+                {
+                    ViewBag.ErrorMessage = "Không tìm thấy thông tin hợp đồng.";
+                    return View("Error"); // Thay "Error" bằng tên trang hiển thị thông báo lỗi của bạn
+                }
+
+                // Truyền thông tin hợp đồng đến view để hiển thị
+                return View(contract);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý nếu có lỗi, có thể chuyển hướng hoặc hiển thị thông báo lỗi
+                ViewBag.ErrorMessage = "Đã xảy ra lỗi khi lấy thông tin hợp đồng: " + ex.Message;
+                return View("Error"); // Thay "Error" bằng tên trang hiển thị thông báo lỗi của bạn
+            }
+        }
+ [HttpPost]
+        public ActionResult RegisterRoom(int id)
+        {
+            var motel = db.motels.Find(id);
+
+            if (motel == null)
+            {
+                // Xử lý khi không tìm thấy phòng trọ
+                return RedirectToAction("Index");
+            }
+
+            // Truyền thông tin phòng trọ qua ViewBag hoặc ViewData (tùy chọn)
+            ViewBag.MotelInfo = motel;
+
         
-       
+            // Chuyển hướng đến trang đặt phòng và truyền thông tin phòng trọ
+            return View("RegisterRoom", motel);
+        }
     }
 }

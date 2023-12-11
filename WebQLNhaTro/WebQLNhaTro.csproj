@@ -225,8 +225,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrowsepostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContractController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageMotelsController.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\searchpriceController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MotelsController.cs" />
@@ -2716,7 +2719,14 @@
     <Content Include="Models\NhaTroModel.edmx.diagram">
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
     </Content>
-
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Contract\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contract\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Contract\CustomDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2767,6 +2777,8 @@
     <Content Include="Views\Motels\AscendingPrice.cshtml" />
     <Content Include="Views\Motels\DateNew.cshtml" />
     <Content Include="Views\Motels\DecreasePrice.cshtml" />
+    <Content Include="Views\Motels\RegisterRoom.cshtml" />
+    <Content Include="Views\Motels\ContractDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
