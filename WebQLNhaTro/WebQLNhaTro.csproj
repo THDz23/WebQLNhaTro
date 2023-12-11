@@ -2720,8 +2720,11 @@
     <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\CustomDetails.cshtml" />
+
+
     <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <EntityDeploy Include="Models\NhaTroModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
