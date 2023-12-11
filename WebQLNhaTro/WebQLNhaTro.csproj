@@ -2577,6 +2577,8 @@
     <Content Include="Image\Tro1.jpg" />
     <Content Include="Image\Tro2.jpg" />
     <Content Include="Image\Tro3.jpg" />
+    <Content Include="Image\user.jpg" />
+    <Content Include="Image\User2.jpg" />
     <Content Include="Models\NhaTroModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NhaTroModel.edmx</DependentUpon>
