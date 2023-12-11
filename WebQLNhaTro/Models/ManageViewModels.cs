@@ -13,7 +13,7 @@ namespace WebQLNhaTro.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
-
+    
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
@@ -77,7 +77,12 @@ namespace WebQLNhaTro.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
     }
+    public partial class Contract
+    {
+        // ... Các thuộc tính hiện có
 
+        public bool IsLocked { get; set; }
+    }
     public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }

@@ -1,0 +1,78 @@
+﻿@model WebQLNhaTro.Models.ADMIN
+
+@{
+    ViewBag.Title = "Chi tiết tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h2 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        color: #333;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<h2>Thông tin chi tiết tài khoản</h2>
+
+<table>
+    <tr>
+        <th>IDAdmin</th>
+        <td>@Model.IDAdmin</td>
+    </tr>
+    <tr>
+        <th>Account</th>
+        <td>@Model.Account</td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td>@Model.password</td>
+    </tr>
+    <tr>
+        <th>Permission</th>
+        <td>@Model.permission</td>
+    </tr>
+    <tr>
+        <th>FullName</th>
+        <td>@ViewBag.fullName</td>
+    </tr>
+    <tr>
+        <th>Gender</th>
+        <td>@ViewBag.gender</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@ViewBag.Email</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Quay lại danh sách", "Index")

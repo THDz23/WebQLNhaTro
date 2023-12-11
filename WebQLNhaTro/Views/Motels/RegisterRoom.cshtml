@@ -1,0 +1,24 @@
+﻿@model WebQLNhaTro.Models.motel
+
+@{
+    ViewBag.Title = "Book Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Mã HTML và chức năng đặt phòng của trang BookRoom -->
+<h1>Đặt phòng - @Model.Title</h1>
+<!-- ... (Thêm các trường thông tin và form đặt phòng theo yêu cầu của bạn) ... -->
+
+<button id="btnBookRoom">Đặt phòng</button>
+
+<script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi click vào nút "Đặt phòng"
+        $("#btnBookRoom").click(function () {
+            // Lấy ID của phòng trọ từ Model
+            var motelId = @Model.MotelID;
+            // Chuyển hướng đến trang tạo hợp đồng
+            window.location.href = '/Motels/CreateContract/' + motelId;
+        });
+    });
+</script>

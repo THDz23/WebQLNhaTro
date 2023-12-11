@@ -311,6 +311,7 @@
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
 </div>
 
+
 <script>
     document.getElementById('sorting').addEventListener('change', function () {
         const productList = document.getElementById('productList');
