@@ -2723,8 +2723,6 @@
     <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Contract\CustomDetails.cshtml" />
-
-
     <Content Include="Areas\Admin\Views\Admin\ConfirmDelete.cshtml" />
     <EntityDeploy Include="Models\NhaTroModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -2737,6 +2735,8 @@
     <Content Include="Areas\Admin\Views\Browseposts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Browseposts\show.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
