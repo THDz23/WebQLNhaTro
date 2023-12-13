@@ -94,9 +94,26 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
                 c.CustomID = int.Parse(f["idCus"]);
                 c.Electric = decimal.Parse(f["elec"]);
                 c.Water = decimal.Parse(f["water"]);
-                c.Priece = decimal.Parse(f["sumVal"]);
+                var a = f["sumVal"];
+                if(a == "")
+                {
+                    c.Priece = 0;
+                }
+                else
+                {
+                    c.Priece = decimal.Parse(a);
+                }
                 c.Wifi = decimal.Parse(f["wifi"]);
-                c.Status = f["status"];
+                var b = f["status"];
+                if(b == "")
+                {
+                    c.Status = Convert.ToString("1");
+                }
+                else
+                {
+                    c.Status = Convert.ToString(b);
+                }
+
                 db.Contracts.Attach(c);
                 db.Entry(c).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

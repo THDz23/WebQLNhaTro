@@ -133,7 +133,7 @@
     </td>
     <td>
         <div class="action-buttons">
-            <button onclick="approveContract('@Url.Action("ApproveContract", "Order")', @order.OrderID)"
+            <button onclick="approveContract('@Url.Action("ApproveContract", "Contract")', @order.OrderID)"
                     @if (order.Status != "Chờ duyệt") { <text> disabled</text> }>
                 Duyệt
             </button>

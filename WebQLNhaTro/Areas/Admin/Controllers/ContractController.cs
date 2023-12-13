@@ -33,7 +33,7 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
         public ActionResult ApproveContract(int contractId)
         {
             var order = db.Orders.Find(contractId);
-            if (order != null && order.Status == "Chờ Duyệt")
+            if (order != null && order.Status == "Chờ duyệt")
             {
                 order.Status = "Đã Duyệt";
                 db.Entry(order).State = EntityState.Modified;
@@ -46,9 +46,15 @@ namespace WebQLNhaTro.Areas.Admin.Controllers
             return View();
         }
 
-        private void UpdateMotelStatus(int motelID, string v)
+        private void UpdateMotelStatus(int motelId, string status)
         {
-            throw new NotImplementedException();
+            var motel = db.motels.Find(motelId);
+            if (motel != null)
+            {
+                motel.Status = status;
+                db.Entry(motel).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public ActionResult LockContract(int contractId)
